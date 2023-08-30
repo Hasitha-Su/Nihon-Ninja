@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.hasitha.nihonNinja.LoginFragment"
+        android:name="com.hasitha.nihonNinja.ui.userLogin.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.hasitha.nihonNinja.RegistrationFragment"
+        android:name="com.hasitha.nihonNinja.ui.useRegistration.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.hasitha.nihonNinja.HomeFragment"
+        android:name="com.hasitha.nihonNinja.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.hasitha.nihonNinja.DashboardFragment"
+        android:name="com.hasitha.nihonNinja.ui.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -49,6 +49,6 @@
     </fragment>
     <fragment
         android:id="@+id/sinhalaToJapTranslationQuizFragment3"
-        android:name="SinhalaToJapTranslationQuizFragment"
+        android:name="com.hasitha.nihonNinja.ui.translationQuiz.SinhalaToJapTranslationQuizFragment"
         android:label="SinhalaToJapTranslationQuizFragment3" />
 </navigation>

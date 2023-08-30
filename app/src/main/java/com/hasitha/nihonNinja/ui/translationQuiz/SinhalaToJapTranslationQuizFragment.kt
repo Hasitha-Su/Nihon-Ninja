@@ -1,3 +1,5 @@
+package com.hasitha.nihonNinja.ui.translationQuiz
+
 import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -16,7 +18,7 @@ class SinhalaToJapTranslationQuizFragment : Fragment() {
 
     private lateinit var wordsFlexbox: FlexboxLayout
     private var currentLineWidth = 0
-    private val currentLineWords = mutableListOf<TextView>()
+    //private val currentLineWords = mutableListOf<TextView>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
