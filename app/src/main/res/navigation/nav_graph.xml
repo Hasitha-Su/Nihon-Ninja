@@ -44,25 +44,9 @@
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment"
-            app:destination="@id/sinhalaToJapTranslationQuizFragment" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment2"
-            app:destination="@id/sinhalaToJapTranslationQuizFragment2" />
-        <action
             android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment3"
             app:destination="@id/sinhalaToJapTranslationQuizFragment3" />
     </fragment>
-    <fragment
-        android:id="@+id/sinhalaToJapTranslationQuizFragment"
-        android:name="com.hasitha.nihonNinja.SinhalaToJapTranslationQuizFragment"
-        android:label="fragment_sinhala_to_jap_translation_quiz"
-        tools:layout="@layout/fragment_sinhala_to_jap_translation_quiz" />
-    <fragment
-        android:id="@+id/sinhalaToJapTranslationQuizFragment2"
-        android:name="com.hasitha.nihonNinja.SinhalaToJapTranslationQuizFragment2"
-        android:label="fragment_sinhala_to_jap_translation_quiz2"
-        tools:layout="@layout/fragment_sinhala_to_jap_translation_quiz2" />
     <fragment
         android:id="@+id/sinhalaToJapTranslationQuizFragment3"
         android:name="SinhalaToJapTranslationQuizFragment3"

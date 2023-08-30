@@ -43,14 +43,6 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button14).setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment)
-        }
-
-        view.findViewById<Button>(R.id.button3).setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment2)
-        }
-
         view.findViewById<Button>(R.id.button4).setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment3)
         }
