@@ -44,12 +44,11 @@
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment"
-            app:destination="@id/sinhalaToJapTranslationQuizFragment" />
+            android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment3"
+            app:destination="@id/sinhalaToJapTranslationQuizFragment3" />
     </fragment>
     <fragment
-        android:id="@+id/sinhalaToJapTranslationQuizFragment"
-        android:name="com.hasitha.nihonNinja.SinhalaToJapTranslationQuizFragment"
-        android:label="fragment_sinhala_to_jap_translation_quiz"
-        tools:layout="@layout/fragment_sinhala_to_jap_translation_quiz" />
+        android:id="@+id/sinhalaToJapTranslationQuizFragment3"
+        android:name="SinhalaToJapTranslationQuizFragment"
+        android:label="SinhalaToJapTranslationQuizFragment3" />
 </navigation>

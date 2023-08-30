@@ -1,136 +1,140 @@
-package com.hasitha.nihonNinja
-
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import com.google.android.flexbox.*
+import com.hasitha.nihonNinja.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SinhalaToJapTranslationQuizFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SinhalaToJapTranslationQuizFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var wordsFlexbox: FlexboxLayout
+    private var currentLineWidth = 0
+    private val currentLineWords = mutableListOf<TextView>()
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//
-//        val constraintLayout: ConstraintLayout = view.findViewById(R.id.frameLayout4)
-//
-//        val numButtons = 5  // The number of buttons you want to create
-//
-//        for (i in 1..numButtons) {
-//            val button = Button(context)
-//            button.id = View.generateViewId()
-//            button.text = "Button $i"
-//
-//            val params = ConstraintLayout.LayoutParams(
-//                ConstraintLayout.LayoutParams.WRAP_CONTENT,
-//                ConstraintLayout.LayoutParams.WRAP_CONTENT
-//            )
-//            // You can set constraints for the button programmatically here
-//            if (i > 1) {
-//                params.topToBottom = constraintLayout.getChildAt(i - 2).id
-//                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
-//            } else {
-//                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
-//                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
-//            }
-//
-//            button.layoutParams = params
-//            constraintLayout.addView(button)
-//
-//
-//
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_sinhala_to_jap_translation_quiz, container, false)
-//    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_sinhala_to_jap_translation_quiz, container, false)
+        wordsFlexbox = view.findViewById(R.id.wordsFlexbox)
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_sinhala_to_jap_translation_quiz, container, false)
-//    }
+        //"この サンプル の センテンス は デモンストレーション のため だけ のもの です
+        //val sentence = "This sample sentence is one only for demonstration purpose"
+        val sentence = "この サンプル の センテンス は デモンストレーション のため だけ のもの です"
+        val words = sentence.split(" ")
 
-override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-): View? {
-//     Inflate the layout for this fragment
-    val view = inflater.inflate(R.layout.fragment_sinhala_to_jap_translation_quiz, container, false)
+        val metrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(metrics)
+        val screenWidth = metrics.widthPixels
 
-    val constraintLayout: ConstraintLayout = view.findViewById(R.id.frameLayout4)  // Assuming frameLayout4 is your ConstraintLayout's ID
-
-    val numButtons = 5  // The number of buttons you want to create
-
-    for (i in 1..numButtons) {
-        val button = Button(context)
-        button.id = View.generateViewId()
-        button.text = "Button $i"
-
-        val params = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.WRAP_CONTENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        // You can set constraints for the button programmatically here
-        if (i > 1) {
-            params.topToBottom = constraintLayout.getChildAt(i - 2).id
-            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
-        } else {
-            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
-            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+        val estimatedLines = estimateLinesNeeded(words, screenWidth)
+        repeat(estimatedLines) {
+            addBlackLine()
         }
 
-        button.layoutParams = params
-        constraintLayout.addView(button)
-    }
+        val buttonsFlexboxLayout: FlexboxLayout = view.findViewById(R.id.flexboxLayout)
+        buttonsFlexboxLayout.flexDirection = FlexDirection.ROW
+        buttonsFlexboxLayout.flexWrap = FlexWrap.WRAP
+        buttonsFlexboxLayout.alignItems = AlignItems.CENTER
+        buttonsFlexboxLayout.justifyContent = JustifyContent.CENTER
 
-    return view
+        //"せんせい", "いま", "なん", "じ", "です", "か"
+        val answers = arrayOf("この", "サンプル", "の", "センテンス", "は", "デモンストレーション", "のため", "だけ", "のもの", "です")
+        for (answer in answers) {
+            val button = Button(context)
+            button.text = answer
+            button.layoutParams = FlexboxLayout.LayoutParams(
+                FlexboxLayout.LayoutParams.WRAP_CONTENT,
+                FlexboxLayout.LayoutParams.WRAP_CONTENT
+            )
 
-}
-
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SinhalaToJapTranslationQuizFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SinhalaToJapTranslationQuizFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+            button.setOnClickListener {
+                addWordToFlexbox(button.text.toString())
+//                addWordToFlexbox(button.text.toString(), button)
+                Log.d("+++ ButtonOnClick", "Button with text ${button.text} was clicked!")
             }
+
+            buttonsFlexboxLayout.addView(button)
+        }
+        return view
+    }
+
+    private fun estimateLinesNeeded(words: List<String>, screenWidth: Int): Int {
+        var lines = 1
+        var currentLineWidth = 0
+        val spaceTextView = TextView(context)
+        spaceTextView.text = " "
+        spaceTextView.measure(0, 0)
+        val spaceWidth = spaceTextView.measuredWidth
+
+        words.forEach { word ->
+            val textView = TextView(context).apply {
+                text = word
+                textSize = 16f
+            }
+            textView.measure(0, 0)
+            val wordWidthWithMargins = textView.measuredWidth + 8
+
+            if (currentLineWidth + wordWidthWithMargins + (lines * spaceWidth) > screenWidth) {
+                lines++
+                currentLineWidth = 0
+            }
+            currentLineWidth += wordWidthWithMargins
+        }
+        return lines
+    }
+
+    private fun addWordToFlexbox(word: String) {
+        val metrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(metrics)
+        val screenWidth = metrics.widthPixels
+
+        val textView = TextView(context).apply {
+            text = word
+            textSize = 16f
+            background = ContextCompat.getDrawable(context, R.drawable.textview_outline)
+            setPadding(8, 4, 8, 4)
+
+            val params = FlexboxLayout.LayoutParams(
+                FlexboxLayout.LayoutParams.WRAP_CONTENT,
+                FlexboxLayout.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(4, 4, 4, 4)
+            layoutParams = params
+        }
+
+        textView.measure(0, 0)
+        val wordWidthWithMargins = textView.measuredWidth + 8
+
+        if (currentLineWidth + wordWidthWithMargins > screenWidth) {
+            currentLineWidth = 0
+        }
+
+        currentLineWidth += wordWidthWithMargins
+
+        textView.setOnClickListener {
+            wordsFlexbox.removeView(it)
+            currentLineWidth -= wordWidthWithMargins
+            if (currentLineWidth < 0) currentLineWidth = 0
+        }
+        wordsFlexbox.addView(textView)
+    }
+
+    private fun addBlackLine() {
+        val blackLine = View(context).apply {
+            layoutParams = FlexboxLayout.LayoutParams(
+                FlexboxLayout.LayoutParams.MATCH_PARENT,
+                2
+            )
+            setBackgroundColor(Color.BLACK)
+        }
+        wordsFlexbox.addView(blackLine)
     }
 }
