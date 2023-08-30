@@ -11,9 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.flexbox.*
 import com.hasitha.nihonNinja.R
-import org.json.JSONArray
 
-class SinhalaToJapTranslationQuizFragment3 : Fragment() {
+class SinhalaToJapTranslationQuizFragment : Fragment() {
 
     private lateinit var wordsFlexbox: FlexboxLayout
     private var currentLineWidth = 0
@@ -23,7 +22,7 @@ class SinhalaToJapTranslationQuizFragment3 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_sinhala_to_jap_translation_quiz3, container, false)
+        val view = inflater.inflate(R.layout.fragment_sinhala_to_jap_translation_quiz, container, false)
         wordsFlexbox = view.findViewById(R.id.wordsFlexbox)
 
         //"この サンプル の センテンス は デモンストレーション のため だけ のもの です

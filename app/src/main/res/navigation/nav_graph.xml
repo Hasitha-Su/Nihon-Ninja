@@ -49,6 +49,6 @@
     </fragment>
     <fragment
         android:id="@+id/sinhalaToJapTranslationQuizFragment3"
-        android:name="SinhalaToJapTranslationQuizFragment3"
+        android:name="SinhalaToJapTranslationQuizFragment"
         android:label="SinhalaToJapTranslationQuizFragment3" />
 </navigation>
