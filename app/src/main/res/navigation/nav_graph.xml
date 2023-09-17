@@ -46,9 +46,21 @@
         <action
             android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment3"
             app:destination="@id/sinhalaToJapTranslationQuizFragment3" />
+        <argument
+            android:name="quizId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/sinhalaToJapTranslationQuizFragment3"
-        android:name="com.hasitha.nihonNinja.ui.translationQuiz.SinhalaToJapTranslationQuizFragment"
-        android:label="SinhalaToJapTranslationQuizFragment3" />
+        android:name="com.hasitha.nihonNinja.ui.translationQuiz.TranslationQuizFragment"
+        android:label="SinhalaToJapTranslationQuizFragment3" >
+        <action
+            android:id="@+id/action_sinhalaToJapTranslationQuizFragment3_to_quizResultFragment"
+            app:destination="@id/quizResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizResultFragment"
+        android:name="com.hasitha.nihonNinja.ui.quizResult.QuizResultFragment"
+        android:label="fragment_quiz_result"
+        tools:layout="@layout/fragment_quiz_result" />
 </navigation>
