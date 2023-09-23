@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "quiz_table")
 data class QuizEntity(
     @PrimaryKey val quizId: Int,
-    val quizName: String
+    val quizName: String,
+    val totalQuestions: Int
 )
 
 

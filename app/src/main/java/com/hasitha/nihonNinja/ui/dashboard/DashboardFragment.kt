@@ -40,7 +40,7 @@ class DashboardFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         quizViewModel.allQuizzes.observe(viewLifecycleOwner) { quizzes ->
-            Log.d("+++ allQuizzes 2", quizzes.toString())
+//            Log.d("+++ allQuizzes 2", quizzes.toString())
             quizzes?.let { quizAdapter.submitList(it) }
         }
     }

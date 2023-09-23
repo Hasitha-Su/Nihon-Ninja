@@ -45,22 +45,35 @@
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment3"
-            app:destination="@id/sinhalaToJapTranslationQuizFragment3" />
+            app:destination="@id/translationQuizFragment" />
         <argument
             android:name="quizId"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/sinhalaToJapTranslationQuizFragment3"
+        android:id="@+id/translationQuizFragment"
         android:name="com.hasitha.nihonNinja.ui.translationQuiz.TranslationQuizFragment"
-        android:label="SinhalaToJapTranslationQuizFragment3" >
+        android:label="TranslationQuizFragment" >
         <action
-            android:id="@+id/action_sinhalaToJapTranslationQuizFragment3_to_quizResultFragment"
-            app:destination="@id/quizResultFragment" />
+            android:id="@+id/action_translationQuizFragment_to_quizResultFragment"
+            app:destination="@id/quizResultFragment" >
+        </action>
     </fragment>
     <fragment
         android:id="@+id/quizResultFragment"
         android:name="com.hasitha.nihonNinja.ui.quizResult.QuizResultFragment"
         android:label="fragment_quiz_result"
-        tools:layout="@layout/fragment_quiz_result" />
+        tools:layout="@layout/fragment_quiz_result" >
+        <argument
+            android:name="param1"
+            app:argType="integer" />
+        <argument
+            android:name="param2"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaderBoardFragment"
+        android:name="com.hasitha.nihonNinja.ui.leaderboard.LeaderBoardFragment"
+        android:label="fragment_leader_board"
+        tools:layout="@layout/fragment_leader_board" />
 </navigation>
