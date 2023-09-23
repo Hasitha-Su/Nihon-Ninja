@@ -33,4 +33,7 @@ interface QuizDao {
     @Query("SELECT * FROM question_table WHERE quizId = :quizId")
     fun getQuestionsWithAnswersForQuiz(quizId: Int): LiveData<List<QuestionWithAnswers>>
 
+    @Query("SELECT totalQuestions FROM quiz_table WHERE quizId = :quizId")
+    suspend fun getTotalQuestionsForQuiz(quizId: Int): Int
+
 }

@@ -2,12 +2,14 @@ package com.hasitha.nihonNinja.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.hasitha.nihonNinja.data.local.QuizDao
 import com.hasitha.nihonNinja.data.remote.QuizApiService
 import com.hasitha.nihonNinja.model.entities.AnswerEntity
 import com.hasitha.nihonNinja.model.entities.QuestionEntity
 import com.hasitha.nihonNinja.model.entities.QuestionWithAnswers
 import com.hasitha.nihonNinja.model.entities.QuizEntity
+import com.hasitha.nihonNinja.model.entities.QuizWithQuestionsAndAnswers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -21,7 +23,7 @@ class QuizRepository(
             val quizResponse = quizApiService.getQuizById()
             Log.d("+++ quizResponse", quizResponse.toString())
 
-            val quiz = QuizEntity(quizResponse.quizId, quizResponse.quizName)
+            val quiz = QuizEntity(quizResponse.quizId, quizResponse.quizName, quizResponse.totalQuestions)
             quizDao.insertQuiz(quiz)
 
             // Insert each Question and associated Answers
@@ -51,6 +53,14 @@ class QuizRepository(
     fun getQuestionsWithAnswersForQuiz(quizId: Int): LiveData<List<QuestionWithAnswers>> {
         return quizDao.getQuestionsWithAnswersForQuiz(quizId)
     }
+
+    fun getQuizWithQuestionsAndAnswers(quizId: Int): LiveData<QuizWithQuestionsAndAnswers> = liveData {
+        val questionsWithAnswers = quizDao.getQuestionsWithAnswersForQuiz(quizId)
+        val totalQuestions = quizDao.getTotalQuestionsForQuiz(quizId) // You'll need to create this DAO function
+        Log.d("+++ totalQuestions", totalQuestions.toString())
+        emit(QuizWithQuestionsAndAnswers(totalQuestions, questionsWithAnswers))
+    }
+
 
     fun getAllQuizzes(): LiveData<List<QuizEntity>> {
         return quizDao.getAllQuizzes()
