@@ -6,6 +6,7 @@ import com.hasitha.nihonNinja.constants.Constants.BASE_URL
 import com.hasitha.nihonNinja.data.local.AppDatabase
 import com.hasitha.nihonNinja.data.local.QuizDao
 import com.hasitha.nihonNinja.data.remote.QuizApiService
+import com.hasitha.nihonNinja.data.remote.UserApiService
 import com.hasitha.nihonNinja.repository.QuestionRepository
 import com.hasitha.nihonNinja.repository.QuizRepository
 import dagger.Module
@@ -41,8 +42,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): QuizApiService {
+    fun provideQuizApiService(retrofit: Retrofit): QuizApiService {
         return retrofit.create(QuizApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserApiService(retrofit: Retrofit): UserApiService {
+        return retrofit.create(UserApiService::class.java)
     }
 
     @Provides
@@ -62,4 +69,12 @@ object AppModule {
     fun provideQuestionRepository(): QuestionRepository {
         return QuestionRepository()
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideUserRepository(): UserRepository {
+//        return UserRepository()
+//    }
+
+
 }
