@@ -76,4 +76,12 @@
         android:name="com.hasitha.nihonNinja.ui.leaderboard.LeaderBoardFragment"
         android:label="fragment_leader_board"
         tools:layout="@layout/fragment_leader_board" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.hasitha.nihonNinja.ui.userProfile.UserProfileFragment"
+        android:label="UserProfileFragment" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>
