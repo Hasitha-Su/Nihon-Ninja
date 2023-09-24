@@ -11,7 +11,7 @@ interface QuizApiService {
 //    suspend fun getQuizById(@Path("quizId") quizId: Int): QuizResponse
 
     //Hard coded Id for testing purpose
-    @GET("quizzes/quiz1.json")
+    @GET("/quizzes/quiz/1")
     //suspend fun getQuizById(@Path("quizId") quizId: Int): QuizResponse
     suspend fun getQuizById(): QuizResponse
 
