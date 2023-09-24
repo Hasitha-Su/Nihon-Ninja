@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.action_profile -> {
-                    // navController.navigate(R.id.profileFragment)
+                     navController.navigate(R.id.userProfileFragment)
                     true
                 }
                 else -> false
