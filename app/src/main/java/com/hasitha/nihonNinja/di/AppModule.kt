@@ -5,8 +5,10 @@ import androidx.room.Room
 import com.hasitha.nihonNinja.constants.Constants.BASE_URL
 import com.hasitha.nihonNinja.data.local.AppDatabase
 import com.hasitha.nihonNinja.data.local.QuizDao
+import com.hasitha.nihonNinja.data.remote.LeaderBoaredApiService
 import com.hasitha.nihonNinja.data.remote.QuizApiService
 import com.hasitha.nihonNinja.data.remote.UserApiService
+import com.hasitha.nihonNinja.repository.LeaderBoardRepository
 import com.hasitha.nihonNinja.repository.QuestionRepository
 import com.hasitha.nihonNinja.repository.QuizRepository
 import dagger.Module
@@ -69,6 +71,18 @@ object AppModule {
     fun provideQuestionRepository(): QuestionRepository {
         return QuestionRepository()
     }
+
+    @Provides
+    @Singleton
+    fun provideLeaderBoardRepository(apiService: LeaderBoaredApiService): LeaderBoardRepository {
+        return LeaderBoardRepository(apiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLeaderBoardApiService(retrofit: Retrofit): LeaderBoaredApiService =
+        retrofit.create(LeaderBoaredApiService::class.java)
+
 
 //    @Provides
 //    @Singleton
