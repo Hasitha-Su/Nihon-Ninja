@@ -1,16 +1,19 @@
 package com.hasitha.nihonNinja.di
 
 import android.content.Context
+import androidx.annotation.Nullable
 import androidx.room.Room
 import com.hasitha.nihonNinja.constants.Constants.BASE_URL
 import com.hasitha.nihonNinja.data.local.AppDatabase
 import com.hasitha.nihonNinja.data.local.QuizDao
+import com.hasitha.nihonNinja.data.local.UserDao
 import com.hasitha.nihonNinja.data.remote.LeaderBoaredApiService
 import com.hasitha.nihonNinja.data.remote.QuizApiService
 import com.hasitha.nihonNinja.data.remote.UserApiService
 import com.hasitha.nihonNinja.repository.LeaderBoardRepository
 import com.hasitha.nihonNinja.repository.QuestionRepository
 import com.hasitha.nihonNinja.repository.QuizRepository
+import com.hasitha.nihonNinja.util.SharedPrefManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +22,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -83,12 +87,16 @@ object AppModule {
     fun provideLeaderBoardApiService(retrofit: Retrofit): LeaderBoaredApiService =
         retrofit.create(LeaderBoaredApiService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideUserDao(database: AppDatabase): UserDao {
+        return database.userDao()
+    }
 
-//    @Provides
-//    @Singleton
-//    fun provideUserRepository(): UserRepository {
-//        return UserRepository()
-//    }
-
+    @Provides
+    @Singleton
+    fun provideSharedPrefManager(@ApplicationContext context: Context): SharedPrefManager {
+        return SharedPrefManager(context)
+    }
 
 }
