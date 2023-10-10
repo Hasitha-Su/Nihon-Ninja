@@ -25,6 +25,10 @@ class HomeFragment : Fragment() {
         view.findViewById<Button>(R.id.loginBtn).setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
+
+        view.findViewById<Button>(R.id.button4).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_userSignUpFragment)
+        }
     }
 
 }
