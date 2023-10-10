@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hasitha.nihonNinja.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserSignUpFragment : Fragment() {
 
     companion object {
@@ -23,10 +25,10 @@ class UserSignUpFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_user_sign_up, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UserSignUpViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        viewModel = ViewModelProvider(this).get(UserSignUpViewModel::class.java)
+//        // TODO: Use the ViewModel
+//    }
 
 }

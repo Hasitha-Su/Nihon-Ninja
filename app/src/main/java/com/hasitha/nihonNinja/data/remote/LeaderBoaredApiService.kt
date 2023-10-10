@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface LeaderBoaredApiService {
-    @GET("leaderboard")
+    @GET("/leaderboard")
     suspend fun getLeaderBoard(): List<LeaderBoardUserResponse>
 
 }
