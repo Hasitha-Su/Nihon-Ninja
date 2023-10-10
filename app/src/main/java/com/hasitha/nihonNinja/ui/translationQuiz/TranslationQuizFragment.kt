@@ -15,19 +15,25 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.flexbox.*
 import com.google.android.material.snackbar.Snackbar
 import com.hasitha.nihonNinja.R
+import com.hasitha.nihonNinja.model.api.QuizResult
 import com.hasitha.nihonNinja.model.entities.QuestionResult
 import com.hasitha.nihonNinja.model.entities.QuestionWithAnswers
+import com.hasitha.nihonNinja.util.SharedPrefManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.util.Arrays
 
 
 
 @AndroidEntryPoint
 class TranslationQuizFragment : Fragment() {
+
+
 
     // use this ?
     private val translationQuizViewModel: TranslationQuizViewModel by viewModels()
@@ -44,7 +50,7 @@ class TranslationQuizFragment : Fragment() {
 //    private var sentences: List<QuestionWithAnswers> = listOf()
     private val buttonState: MutableMap<Int, Boolean> = mutableMapOf()
 
-    private val selectedButtonIds: MutableList<Int> = mutableListOf()
+    private var selectedButtonIds: MutableList<Int> = mutableListOf()
 //    private val selectedButtonIdsForAllQuestions: MutableList<MutableList<Int>> = mutableListOf()
 
     private val listOfSentences = mutableListOf<String>()
@@ -159,19 +165,36 @@ class TranslationQuizFragment : Fragment() {
             //TODO - Keep button disables until user enter an answer - at least 1
             //TODO - Add validation for NEXT button - no next with empty answer
             //TODO - Evaluate User answer with given answer
+
+            Log.d("+++ selectedButtonIds", selectedButtonIds.toString())
+
+            Log.d(
+                "+++ listOfAnswerOrders[currentSentenceIndex] ",
+                listOfAnswerOrders[currentSentenceIndex].toString()
+            )
+
+            //Ex: listOfAnswerOrders[currentSentenceIndex] - [0, 1, 2, 3]
             val isAnswerCorrect = selectedButtonIds == listOfAnswerOrders[currentSentenceIndex]
             questionResults.add(QuestionResult(questionNumber = currentSentenceIndex + 1, isCorrect = isAnswerCorrect))
 
             if(isAnswerCorrect){
                 correctAnswerCount++
                 Log.d("+++ correctAnswerCount", correctAnswerCount.toString())
+
                 showSnackbar(it, isAnswerCorrect,"")
             }else{
+
+                //Ex: myWords - [[私, は, 学生, です, 先生, 犬], [これ, は, 本, です, ペン, 猫]]
                 val answerList = myWords[currentSentenceIndex]
-                val answerAsStringList = answerList.joinToString(" ")
-                showSnackbar(it, isAnswerCorrect,answerAsStringList)
+                val result = listOfAnswerOrders[currentSentenceIndex].map { answerList[it] }.joinToString(" ")
+                Log.d("+++ result",result)
+
+                showSnackbar(it, isAnswerCorrect,result)
+                Log.d("+++ correct ans order", result)
             }
             Log.d("+++ selectedButtonIds", selectedButtonIds.toString())
+
+            selectedButtonIds.clear()
         }
     }
 
@@ -194,6 +217,13 @@ class TranslationQuizFragment : Fragment() {
             buttonsFlexboxLayout.removeAllViews()
 
             //populateFlexbox(myWords[currentSentenceIndex])
+//            val userId = "someUserId" // replace with actual user ID
+            val userId = translationQuizViewModel.getUserId()
+
+
+            val quizResult = QuizResult(userId, 1, correctAnswerCount)
+            translationQuizViewModel.saveQuizResult(quizResult)
+
 
             Log.d("+++ End of Quiz","+++ End of Quiz")
             Log.d("+++ questionResults", questionResults.toString())
@@ -201,8 +231,27 @@ class TranslationQuizFragment : Fragment() {
             //TODO - Clear everything
             //TODO - Pass number correct answers
             val action = TranslationQuizFragmentDirections.actionTranslationQuizFragmentToQuizResultFragment(correctAnswerCount,totalQuestions)
-            findNavController().navigate(action)        }
+            findNavController().navigate(action)
+        }
     }
+
+    // Function to save quiz result to the server
+//    private fun saveQuizResult(userId: String, quizId: Int, score: Int) {
+//        val quizResult = QuizResult(userId, quizId, score)
+//        translationQuizViewModel.viewModelScope.launch {
+//            try {
+//                val response = translationQuizViewModel.quizRepository.saveQuizResult(quizResult)
+//                if (response.isSuccessful) {
+//                    Log.d("QuizResult", "Result saved successfully!")
+//                } else {
+//                    Log.e("QuizResult", "Failed to save result: ${response.errorBody()?.string()}")
+//                }
+//            } catch (e: Exception) {
+//                Log.e("QuizResult", "Error saving result: ${e.localizedMessage}")
+//            }
+//        }
+//    }
+
 
     fun showSnackbar(view: View, isCorrect: Boolean, correctAnswer: String?) {
 
