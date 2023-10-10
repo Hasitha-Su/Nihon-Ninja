@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userSignUpFragment"
+            app:destination="@id/userSignUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -84,4 +87,8 @@
             android:id="@+id/action_userProfileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userSignUpFragment"
+        android:name="com.hasitha.nihonNinja.ui.userSignUp.UserSignUpFragment"
+        android:label="UserSignUpFragment" />
 </navigation>
