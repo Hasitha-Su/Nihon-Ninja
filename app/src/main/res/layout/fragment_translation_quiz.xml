@@ -1,72 +1,75 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:id="@+id/layout4"
-    android:padding="16dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Section 1: Frame Layout -->
-    <FrameLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hasitha.nihonNinja.ui.translationQuiz.TranslationQuizViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <ImageView
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!-- Section 1: Frame Layout -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="229dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/img26" />
-
-        <TextView
-            android:id="@+id/trnalationquizsentnce"
-            android:layout_width="294dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="This sample sentence is one only for demonstration purpose"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
-    </FrameLayout>
+            android:gravity="center">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="229dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img26" />
 
+            <TextView
+                android:id="@+id/trnalationquizsentnce"
+                android:layout_width="294dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="This sample sentence is one only for demonstration purpose"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </FrameLayout>
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/wordsFlexbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:alignItems="center"
             app:flexDirection="row"
             app:flexWrap="wrap"
-            app:alignItems="center"
-            app:justifyContent="center">
-        </com.google.android.flexbox.FlexboxLayout>
+            app:justifyContent="center" />
 
-
-
-    <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/flexboxLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:alignItems="center"
-        app:justifyContent="center">
-    </com.google.android.flexbox.FlexboxLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="189dp"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexboxLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next" />
+            android:padding="8dp"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="189dp"
+                android:layout_height="wrap_content"
+                android:text="Next" />
+
+        </LinearLayout>
 
     </LinearLayout>
+</layout>
 
-</LinearLayout>
