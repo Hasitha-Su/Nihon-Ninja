@@ -22,16 +22,10 @@ class TranslationQuizViewModel @Inject constructor(
 
     //TODO - Remove lateinit
     lateinit var sentences2: LiveData<QuizWithQuestionsAndAnswers>
-    //lateinit var sentences: LiveData<List<QuestionWithAnswers>>
     val currentSentenceIndex: MutableLiveData<Int> = MutableLiveData(0)
-
-//    private val _currentWords = MutableLiveData<List<String>>()
-//    val currentWords: LiveData<List<String>> get() = _currentWords
-
 
     fun fetchSentences(quizId: Int) {
         //TODO - Remove hardcoded ID
-//        sentences = quizRepository.getQuestionsWithAnswersForQuiz(1)
         sentences2 = quizRepository.getQuizWithQuestionsAndAnswers(1)
     }
 
@@ -44,23 +38,4 @@ class TranslationQuizViewModel @Inject constructor(
     }
 
     fun getUserId(): Long = sharedPrefManager.getUserId()
-
-//    fun updateWords(newWords: List<String>) {
-//        _currentWords.value = newWords
-//    }
-
-
-
-    /*
-    private val _sentences = MutableLiveData<List<QuestionWithAnswers>>()
-    val sentences: LiveData<List<QuestionWithAnswers>> get() = _sentences
-
-    fun fetchSentences(quizId: Int) {
-        //Hard coded ID
-        quizRepository.getQuestionsWithAnswersForQuiz(1).observeForever { questions ->
-            _sentences.value = questions
-        }
-    }
-
-     */
 }
