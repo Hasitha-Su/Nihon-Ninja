@@ -79,7 +79,7 @@ class TranslationQuizFragment : Fragment() {
                     listOfAnswerOrders.add(questionWithAnswers.question.answerOrder) //Extract given answers
                 }
 
-                textView?.text = listOfSentences[currentSentenceIndex]
+                textView.text = listOfSentences[currentSentenceIndex]
                 myWords = extractWordsFromResponse(list)
 //                Log.d("+++ myWords", myWords.toString())
                 populateFlexbox(myWords[currentSentenceIndex])
@@ -94,7 +94,24 @@ class TranslationQuizFragment : Fragment() {
             currentSentenceIndex = newIndex
         }
 
+        translationQuizViewModel.isAnswerCorrect.observe(viewLifecycleOwner) { isCorrect ->
+            if(isCorrect){
+                showSnackbar(view, isCorrect, "")
+            } else {
+                val answerList = myWords[currentSentenceIndex]
+                val result = listOfAnswerOrders[currentSentenceIndex].map { answerList[it] }.joinToString(" ")
+                showSnackbar(view, isCorrect, result)
+            }
+            selectedButtonIds.clear()
+        }
+
         val nextButton: Button = view.findViewById(R.id.nextButton)
+
+        nextButton.setOnClickListener {
+            translationQuizViewModel.evaluateUserAnswer(selectedButtonIds, currentSentenceIndex, listOfAnswerOrders)
+        }
+
+        /*
         nextButton.setOnClickListener {
 
             //TODO - Keep button disables until user enter an answer - at least 1
@@ -108,6 +125,7 @@ class TranslationQuizFragment : Fragment() {
             val isAnswerCorrect = selectedButtonIds == listOfAnswerOrders[currentSentenceIndex]
             questionResults.add(QuestionResult(questionNumber = currentSentenceIndex + 1, isCorrect = isAnswerCorrect))
 
+
             if(isAnswerCorrect){
                 correctAnswerCount++
 //                Log.d("+++ correctAnswerCount", correctAnswerCount.toString())
@@ -120,9 +138,12 @@ class TranslationQuizFragment : Fragment() {
                 showSnackbar(it, isAnswerCorrect,result)
 //                Log.d("+++ correct ans order", result)
             }
+
 //            Log.d("+++ selectedButtonIds", selectedButtonIds.toString())
             selectedButtonIds.clear()
         }
+
+         */
     }
 
     private fun questionIterate(){
