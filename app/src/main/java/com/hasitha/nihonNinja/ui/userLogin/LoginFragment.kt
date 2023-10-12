@@ -32,9 +32,15 @@ class LoginFragment : Fragment() {
 //        viewModel = by viewModels()
 
 
-        view.findViewById<Button>(R.id.button2).setOnClickListener {
-            val email = view.findViewById<EditText>(R.id.editTextText).text.toString()
-            val password = view.findViewById<EditText>(R.id.editTextText2).text.toString()
+//        view.findViewById<Button>(R.id.loginButton).setOnClickListener {
+//            val email = view.findViewById<EditText>(R.id.email).text.toString()
+//            val password = view.findViewById<EditText>(R.id.password).text.toString()
+//            viewModel.loginUser(email, password)
+//        }
+
+        binding.loginButton.setOnClickListener {
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
             viewModel.loginUser(email, password)
         }
 
@@ -95,7 +101,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_login, container, false)
 
