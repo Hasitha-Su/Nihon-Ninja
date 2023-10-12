@@ -28,4 +28,15 @@ class SharedPrefManager @Inject constructor(context: Context) {
     fun getUserId(): Long {
         return sharedPref.getLong("user_id", -1) // return -1 if no id is found.
     }
+
+    fun saveUserName(userName: String) {
+        with(sharedPref.edit()) {
+            putString("user_name", userName)
+            apply()
+        }
+    }
+
+    fun getUserName(): String {
+        return sharedPref.getString("user_name", "") ?: "" // return empty string if no name is found.
+    }
 }
