@@ -1,7 +1,8 @@
 package com.hasitha.nihonNinja.ui.quizResult
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class QuizResultViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+    val resultText = MutableLiveData<String>()
 }
