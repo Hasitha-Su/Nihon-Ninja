@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.loginFragment,
+                R.id.userSignUpFragment,
                 R.id.translationQuizFragment -> {
 //                    Log.d("NAVIGATION", "Hiding bottom navigation")
                     bottomNavigationView.visibility = View.GONE
