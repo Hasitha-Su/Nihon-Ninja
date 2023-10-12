@@ -1,9 +1,8 @@
 package com.hasitha.nihonNinja.ui.translationQuiz
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.V
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.flexbox.*
 import com.google.android.material.snackbar.Snackbar
@@ -23,10 +19,7 @@ import com.hasitha.nihonNinja.R
 import com.hasitha.nihonNinja.model.api.QuizResult
 import com.hasitha.nihonNinja.model.entities.QuestionResult
 import com.hasitha.nihonNinja.model.entities.QuestionWithAnswers
-import com.hasitha.nihonNinja.util.SharedPrefManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import java.util.Arrays
 
 @AndroidEntryPoint
 class TranslationQuizFragment : Fragment() {
@@ -96,6 +89,7 @@ class TranslationQuizFragment : Fragment() {
 
         translationQuizViewModel.isAnswerCorrect.observe(viewLifecycleOwner) { isCorrect ->
             if(isCorrect){
+                correctAnswerCount++
                 showSnackbar(view, isCorrect, "")
             } else {
                 val answerList = myWords[currentSentenceIndex]
