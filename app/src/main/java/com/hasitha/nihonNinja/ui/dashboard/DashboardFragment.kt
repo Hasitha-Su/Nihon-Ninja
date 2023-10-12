@@ -25,10 +25,14 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         quizViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         binding.viewModel = quizViewModel
+
+        quizViewModel.greeting.observe(viewLifecycleOwner) { greetingMessage ->
+            Log.d("DashboardFragment", "Greeting: $greetingMessage")
+        }
         return binding.root
     }
 
