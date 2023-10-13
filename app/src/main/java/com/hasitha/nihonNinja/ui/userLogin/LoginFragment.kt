@@ -13,7 +13,6 @@ import com.hasitha.nihonNinja.R
 import com.hasitha.nihonNinja.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import com.hasitha.nihonNinja.util.Common.Companion.isValidEmail
-import com.hasitha.nihonNinja.util.Common.Companion.isValidPassword
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -41,8 +40,6 @@ class LoginFragment : Fragment() {
             val password = text.toString()
             if (password.isEmpty()) {
                 binding.password.error = "Password is required."
-            } else if (!isValidPassword(password)) {
-                binding.password.error = "Password must have at least 8 characters, 1 special character, 1 number, 1 uppercase, and 1 lowercase letter."
             } else {
                 binding.password.error = null
             }
