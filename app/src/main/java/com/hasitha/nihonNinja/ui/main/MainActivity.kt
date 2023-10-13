@@ -1,5 +1,6 @@
 package com.hasitha.nihonNinja.ui.main
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+//        bottomNavigationView.setBackgroundColor(Color.parseColor("#FF5733"))
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             Log.d("NAVIGATION", "Navigated to: ${destination.displayName}")
