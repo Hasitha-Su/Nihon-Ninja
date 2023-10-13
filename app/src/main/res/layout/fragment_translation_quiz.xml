@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.hasitha.nihonNinja.ui.translationQuiz.TranslationQuizViewModel" />
@@ -14,7 +13,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
-        <!-- Section 1: Frame Layout -->
+
+
+
+        <!-- Section 1: Frame Layout for Image and Text -->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thanslate this sentence" />
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,15 +44,18 @@
                 android:textSize="18sp" />
         </FrameLayout>
 
+        <!-- Section 2: FlexboxLayout for Words -->
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/wordsFlexbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:alignItems="center"
             app:flexDirection="row"
             app:flexWrap="wrap"
             app:justifyContent="center" />
 
+        <!-- Section 3: FlexboxLayout for Correct/Wrong Indicators -->
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/flexboxLayout"
             android:layout_width="match_parent"
@@ -55,6 +66,7 @@
             app:flexWrap="wrap"
             app:justifyContent="center" />
 
+        <!-- Section 4: Button Layout -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,9 +79,6 @@
                 android:layout_width="189dp"
                 android:layout_height="wrap_content"
                 android:text="Submit" />
-
         </LinearLayout>
-
     </LinearLayout>
 </layout>
-
