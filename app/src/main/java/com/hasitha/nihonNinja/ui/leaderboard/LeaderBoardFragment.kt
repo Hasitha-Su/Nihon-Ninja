@@ -15,14 +15,13 @@ class LeaderBoardFragment : Fragment() {
 
     private var _binding: FragmentLeaderBoardBinding? = null
     private lateinit var adapter: LeaderBoardAdapter
-
     private val binding get() = _binding!!
     private lateinit var viewModel: LeaderBoardViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentLeaderBoardBinding.inflate(inflater, container, false) // Initialize _binding first.
+        _binding = FragmentLeaderBoardBinding.inflate(inflater, container, false)
         adapter = LeaderBoardAdapter()
-        binding.recyclerView.adapter = adapter // Now, binding can be accessed.
+        binding.recyclerView.adapter = adapter
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -33,10 +32,8 @@ class LeaderBoardFragment : Fragment() {
         viewModel.leaderBoardItems.observe(viewLifecycleOwner) {
             adapter.setItems(it)
         }
-
         return binding.root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

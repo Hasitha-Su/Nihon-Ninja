@@ -19,7 +19,7 @@ class DashboardViewModel @Inject constructor(
 ) : ViewModel() {
 
     val allQuizzes: LiveData<List<QuizEntity>> = quizRepository.getAllQuizzes()
-    private val userName: String = sharedPrefManager.getUserName() ?: "User"
+    private val userName: String = sharedPrefManager.getUserName()
 
     val greeting: LiveData<String> = MutableLiveData<String>().apply {
         value = "Hi $userName"

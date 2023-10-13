@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TranslationQuizFragment : Fragment() {
-    // use this ?
+
     private val translationQuizViewModel: TranslationQuizViewModel by viewModels()
     private var buttonIdCounter = 0
     private var currentLineWidth = 0
@@ -35,7 +35,6 @@ class TranslationQuizFragment : Fragment() {
     private var selectedButtonIds: MutableList<Int> = mutableListOf()
     private val listOfSentences = mutableListOf<String>()
     private val listOfAnswerOrders = mutableListOf<List<Int>>()
-    private val questionResults: MutableList<QuestionResult> = mutableListOf()
     private var correctAnswerCount: Int = 0
     private var totalQuestions: Int = 0
     private lateinit var textView: TextView
@@ -68,7 +67,7 @@ class TranslationQuizFragment : Fragment() {
 //                Log.d("+++ sentences observing list", list.toString())
 
                 list.forEach { questionWithAnswers ->
-                    listOfSentences.add(questionWithAnswers.question.sentence) //Extract English/Sinhala Sentence and show it
+                    listOfSentences.add(questionWithAnswers.question.sentence) //Extract English/Sinhala Sentence
                     listOfAnswerOrders.add(questionWithAnswers.question.answerOrder) //Extract given answers
                 }
 
@@ -104,11 +103,6 @@ class TranslationQuizFragment : Fragment() {
         nextButton.setOnClickListener {
             translationQuizViewModel.evaluateUserAnswer(selectedButtonIds, currentSentenceIndex, listOfAnswerOrders)
         }
-
-
-            //TODO - Keep button disables until user enter an answer - at least 1
-            //TODO - Add validation for NEXT button - no next with empty answer
-            //TODO - Evaluate User answer with given answer
     }
 
     private fun questionIterate(){
@@ -128,15 +122,11 @@ class TranslationQuizFragment : Fragment() {
         } else {
             currentSentenceIndex = 0
             buttonsFlexboxLayout.removeAllViews()
-            //populateFlexbox(myWords[currentSentenceIndex])
-//            val userId = "someUserId" // replace with actual user ID
             val userId = translationQuizViewModel.getUserId()
             val quizResult = QuizResult(userId, 1, correctAnswerCount)
             translationQuizViewModel.saveQuizResult(quizResult)
 //            Log.d("+++ End of Quiz","+++ End of Quiz")
 //            Log.d("+++ questionResults", questionResults.toString())
-            //TODO - Clear everything
-            //TODO - Pass number correct answers
             val action = TranslationQuizFragmentDirections.actionTranslationQuizFragmentToQuizResultFragment(correctAnswerCount,totalQuestions)
             findNavController().navigate(action)
         }
@@ -253,14 +243,4 @@ class TranslationQuizFragment : Fragment() {
         }
         wordsFlexbox.addView(textView)
     }
-        //TODO - Add validation for NEXT button - no next with empty answer
-        //TODO - Evaluate User answer with given answer
-
-        //TODO - When reached end of array, show total of the score to the user in a new Screen
-        //TODO - Navigate to results screen
-        //TODO - Save the score in User DB - before showing results
-        //TODO - QuizId is not passed properly
-        //TODO - change "NEXT" text to "Submit"
 }
-
-

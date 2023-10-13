@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
             } else if (!isValidEmail(text.toString())) {
                 binding.email.error = "Invalid email format."
             } else {
-                binding.email.error = null // Clear the error if email is valid
+                binding.email.error = null
             }
         }
 
@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
             } else if (!isValidPassword(password)) {
                 binding.password.error = "Password must have at least 8 characters, 1 special character, 1 number, 1 uppercase, and 1 lowercase letter."
             } else {
-                binding.password.error = null // Clear the error if password is valid
+                binding.password.error = null
             }
         }
 
@@ -63,11 +63,11 @@ class LoginFragment : Fragment() {
             // Handle the login response
             if (response.error == null && response.user != null) {
                 // Successful login
-                Log.d("+++ Successful login", response.toString())
+//                Log.d("+++ Successful login", response.toString())
                 findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
             } else {
                 // Error during login
-                Log.d("+++ Error during login", response.toString())
+//                Log.d("+++ Error during login", response.toString())
                 Toast.makeText(context, "Error, Please try again...!", Toast.LENGTH_SHORT).show()
             }
         }

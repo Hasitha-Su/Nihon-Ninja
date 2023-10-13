@@ -8,7 +8,6 @@ import com.hasitha.nihonNinja.data.remote.QuizApiService
 import com.hasitha.nihonNinja.model.api.QuizResult
 import com.hasitha.nihonNinja.model.entities.AnswerEntity
 import com.hasitha.nihonNinja.model.entities.QuestionEntity
-import com.hasitha.nihonNinja.model.entities.QuestionWithAnswers
 import com.hasitha.nihonNinja.model.entities.QuizEntity
 import com.hasitha.nihonNinja.model.entities.QuizWithQuestionsAndAnswers
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +22,7 @@ class QuizRepository(
         try {
             withContext(Dispatchers.IO) {
                 val quizResponse = quizApiService.getQuizById()
-//            val quizResponse = quizApiService.getAllQuizzes()
-                Log.d("+++ quizResponse", quizResponse.toString())
+//                Log.d("+++ quizResponse", quizResponse.toString())
 
                 val quiz = QuizEntity(quizResponse.quizId, quizResponse.quizName, quizResponse.totalQuestions)
                 quizDao.insertQuiz(quiz)
@@ -51,60 +49,39 @@ class QuizRepository(
                 }
             }
         } catch (e: Exception) {
-            Log.e("+++ Error", "An error occurred: ${e.message}", e)
+//            Log.e("+++ Error", "An error occurred: ${e.message}", e)
         }
     }
 
     //Get quiz questions and answers
-    fun getQuestionsWithAnswersForQuiz(quizId: Int): LiveData<List<QuestionWithAnswers>> {
-        return quizDao.getQuestionsWithAnswersForQuiz(quizId)
-    }
-
     fun getQuizWithQuestionsAndAnswers(quizId: Int): LiveData<QuizWithQuestionsAndAnswers> = liveData {
         val questionsWithAnswers = quizDao.getQuestionsWithAnswersForQuiz(quizId)
-        val totalQuestions = quizDao.getTotalQuestionsForQuiz(quizId) // You'll need to create this DAO function
-        Log.d("+++ totalQuestions", totalQuestions.toString())
+        val totalQuestions = quizDao.getTotalQuestionsForQuiz(quizId)
+//        Log.d("+++ totalQuestions", totalQuestions.toString())
         emit(QuizWithQuestionsAndAnswers(totalQuestions, questionsWithAnswers))
     }
 
+    // Get a list of all quizzes
     fun getAllQuizzes(): LiveData<List<QuizEntity>> {
         return quizDao.getAllQuizzes()
     }
 
+    // Save quiz result to the server
     suspend fun saveQuizResult(quizResult: QuizResult) {
-
         Log.d("+++ QuizResult", quizResult.toString())
 
         try {
             val response = quizApiService.saveQuizResult(quizResult)
             if (response.isSuccessful) {
                 // Handle success
-                Log.d("QuizResult", "Result saved successfully!")
+                Log.d("+++ QuizResult", "Result saved successfully!")
             } else {
                 // Handle API error response
-                Log.e("QuizResult", "Failed to save result: ${response.errorBody()?.string()}")
+                Log.e("+++ QuizResult", "Failed to save result: ${response.errorBody()?.string()}")
             }
         } catch (e: Exception) {
             // Handle other exceptions like network error
-            Log.e("QuizResult", "Error saving result: ${e.localizedMessage}")
+            Log.e("+++ QuizResult", "Error saving result: ${e.localizedMessage}")
         }
     }
-
-
-        /*
-         //Other CRUD operations
-        suspend fun insertQuiz(quiz: QuizEntity) {
-            quizDao.insertQuiz(quiz)
-        }
-
-        suspend fun insertQuestion(question: QuestionEntity) {
-            quizDao.insertQuestion(question)
-        }
-
-        suspend fun insertAnswer(answer: AnswerEntity) {
-            quizDao.insertAnswer(answer)
-        }
-        }
-
-        */
 }

@@ -1,6 +1,5 @@
 package com.hasitha.nihonNinja.ui.userProfile
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import com.hasitha.nihonNinja.databinding.FragmentUserProfileBinding
 
 class UserProfileFragment : Fragment() {
 
-    private lateinit var viewModel: UserProfileViewModel
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -22,12 +20,7 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
-//        viewModel = ViewModelProvider(this).get(UserProfileViewModel::class.java)
-
-        // Bind the ViewModel
-//        binding.userProfileViewModel  = viewModel
-        binding.lifecycleOwner = this  // Enable LiveData to automatically update the data-binding layout
-
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -46,4 +39,3 @@ class UserProfileFragment : Fragment() {
         _binding = null
     }
 }
-

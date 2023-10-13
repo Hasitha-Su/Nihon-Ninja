@@ -1,16 +1,12 @@
 package com.hasitha.nihonNinja.ui.main
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hasitha.nihonNinja.R
 import com.hasitha.nihonNinja.repository.QuizRepository
@@ -35,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 //        bottomNavigationView.setBackgroundColor(Color.parseColor("#FF5733"))
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            Log.d("NAVIGATION", "Navigated to: ${destination.displayName}")
+//            Log.d("NAVIGATION", "Navigated to: ${destination.displayName}")
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.loginFragment,
