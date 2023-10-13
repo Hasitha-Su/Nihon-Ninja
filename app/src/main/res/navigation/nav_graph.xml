@@ -90,5 +90,9 @@
     <fragment
         android:id="@+id/userSignUpFragment"
         android:name="com.hasitha.nihonNinja.ui.userSignUp.UserSignUpFragment"
-        android:label="UserSignUpFragment" />
+        android:label="UserSignUpFragment" >
+        <action
+            android:id="@+id/action_userSignUpFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>
