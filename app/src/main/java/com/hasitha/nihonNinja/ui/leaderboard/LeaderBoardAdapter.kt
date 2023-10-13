@@ -4,14 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hasitha.nihonNinja.databinding.FragmentLeaderBoardBinding
 import com.hasitha.nihonNinja.databinding.LeaderBoardItemBinding
 import com.hasitha.nihonNinja.model.api.LeaderBoardUserResponse
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 class LeaderBoardAdapter : RecyclerView.Adapter<LeaderBoardAdapter.ViewHolder>() {
     private var items = listOf<LeaderBoardUserResponse>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItems(items: List<LeaderBoardUserResponse>) {
         this.items = items
         notifyDataSetChanged()

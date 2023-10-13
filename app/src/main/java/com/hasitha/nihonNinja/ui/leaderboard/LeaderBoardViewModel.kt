@@ -22,9 +22,7 @@ class LeaderBoardViewModel @Inject constructor(
             try {
                 leaderBoardItems.value = repository.getLeaderBoard()
             } catch (e: Exception) {
-                // Handle exceptions such as network failures here
-                // For example, you could set a different LiveData object
-                // to signal an error state to the UI
+                // Handle exceptions, Ex: network failures here
             }
         }
     }

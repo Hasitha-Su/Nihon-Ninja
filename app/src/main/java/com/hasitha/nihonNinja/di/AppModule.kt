@@ -1,19 +1,7 @@
 package com.hasitha.nihonNinja.di
 
 import android.content.Context
-import androidx.annotation.Nullable
 import androidx.room.Room
-import com.hasitha.nihonNinja.constants.Constants.BASE_URL
-import com.hasitha.nihonNinja.data.local.AppDatabase
-import com.hasitha.nihonNinja.data.local.QuizDao
-import com.hasitha.nihonNinja.data.local.UserDao
-import com.hasitha.nihonNinja.data.remote.LeaderBoaredApiService
-import com.hasitha.nihonNinja.data.remote.QuizApiService
-import com.hasitha.nihonNinja.data.remote.UserApiService
-import com.hasitha.nihonNinja.repository.LeaderBoardRepository
-import com.hasitha.nihonNinja.repository.QuestionRepository
-import com.hasitha.nihonNinja.repository.QuizRepository
-import com.hasitha.nihonNinja.util.SharedPrefManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +10,21 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+import com.hasitha.nihonNinja.data.remote.LeaderBoaredApiService
+import com.hasitha.nihonNinja.data.remote.QuizApiService
+import com.hasitha.nihonNinja.data.remote.UserApiService
+import com.hasitha.nihonNinja.util.SharedPrefManager
+import com.hasitha.nihonNinja.constants.Constants.BASE_URL
+import com.hasitha.nihonNinja.data.local.AppDatabase
+import com.hasitha.nihonNinja.data.local.QuizDao
+import com.hasitha.nihonNinja.data.local.UserDao
+import com.hasitha.nihonNinja.repository.LeaderBoardRepository
+import com.hasitha.nihonNinja.repository.QuestionRepository
+import com.hasitha.nihonNinja.repository.QuizRepository
 
-
+/**
+ * Dagger Hilt module responsible for providing various dependencies in the application.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {

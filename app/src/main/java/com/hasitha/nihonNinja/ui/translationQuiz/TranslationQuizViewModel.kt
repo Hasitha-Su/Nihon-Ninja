@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hasitha.nihonNinja.model.api.QuizResult
-import com.hasitha.nihonNinja.model.entities.QuestionWithAnswers
 import com.hasitha.nihonNinja.model.entities.QuizWithQuestionsAndAnswers
-import com.hasitha.nihonNinja.repository.QuestionRepository
 import com.hasitha.nihonNinja.repository.QuizRepository
 import com.hasitha.nihonNinja.util.SharedPrefManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,11 +18,8 @@ class TranslationQuizViewModel @Inject constructor(
     private val sharedPrefManager: SharedPrefManager
 ) : ViewModel() {
 
-    //TODO - Remove lateinit
     lateinit var sentences2: LiveData<QuizWithQuestionsAndAnswers>
     val currentSentenceIndex: MutableLiveData<Int> = MutableLiveData(0)
-
-    // LiveData for the Evaluation Result
     val isAnswerCorrect: MutableLiveData<Boolean> = MutableLiveData()
 
     //Function to Evaluate the Answer

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout2"
@@ -7,14 +8,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="284dp"
-        android:text="Nihon Ninja"
+        android:text="@string/nihon_ninja"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -29,7 +29,7 @@
         android:layout_width="298dp"
         android:layout_height="60dp"
         android:layout_marginBottom="48dp"
-        android:text="ALREADY A USER"
+        android:text="@string/already_an_user"
         android:textSize="18sp"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,7 @@
         android:layout_width="303dp"
         android:layout_height="60dp"
         android:layout_marginBottom="28dp"
-        android:text="GET STARTED"
+        android:text="@string/get_started"
         android:textSize="18sp"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/loginBtn"
@@ -53,7 +53,6 @@
         tools:layout_conversion_absoluteWidth="91dp" />
 
     <ImageView
-
         android:id="@+id/imageView"
         android:layout_width="154dp"
         android:layout_height="166dp"

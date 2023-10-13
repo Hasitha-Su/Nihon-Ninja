@@ -14,11 +14,9 @@ import javax.inject.Inject
 @HiltViewModel
 class UserSignUpViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
-    // LiveData to hold the signup response
     private val _signUpResponse = MutableLiveData<SignUpResponse>()
     val signUpResponse: LiveData<SignUpResponse> get() = _signUpResponse
 
-    // LiveData to hold error messages
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
