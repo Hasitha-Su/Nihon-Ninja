@@ -1,7 +1,7 @@
 package com.hasitha.nihonNinja.model.api
 
 data class SignUpRequest(
-    val username: String?,
+    val name: String?,
     val email: String?,
-    val password: UserResponse?
+    val password: String?
 )
