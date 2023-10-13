@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">日本の忍者</string>
+    <string name="hello_blank_fragment">空のフラグメントへようこそ</string>
+    <string name="leaderboard">リーダーボード</string>
+    <string name="home">ホーム</string>
+    <string name="profile">プロフィール</string>
+    <string name="email">メール</string>
+    <string name="login">ログイン</string>
+    <string name="not_yet_registered_signup_now">まだ登録していませんか？ 今すぐサインアップ</string>
+    <string name="password">パスワード</string>
+    <string name="sign_in">サインイン</string>
+</resources>

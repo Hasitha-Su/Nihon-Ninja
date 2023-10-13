@@ -1,21 +1,19 @@
 package com.hasitha.nihonNinja.ui.userLogin
-
-import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.hasitha.nihonNinja.LoginState
 import com.hasitha.nihonNinja.R
 import com.hasitha.nihonNinja.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import com.hasitha.nihonNinja.util.Common.Companion.isValidEmail
+import com.hasitha.nihonNinja.util.Common.Companion.isValidPassword
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -27,84 +25,58 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-//        viewModel = by viewModels()
 
+        binding.email.editText?.doOnTextChanged { text, _, _, _ ->
+            if (text?.isEmpty() == true) {
+                binding.email.error = "Email is required."
+            } else if (!isValidEmail(text.toString())) {
+                binding.email.error = "Invalid email format."
+            } else {
+                binding.email.error = null // Clear the error if email is valid
+            }
+        }
 
-//        view.findViewById<Button>(R.id.loginButton).setOnClickListener {
-//            val email = view.findViewById<EditText>(R.id.email).text.toString()
-//            val password = view.findViewById<EditText>(R.id.password).text.toString()
-//            viewModel.loginUser(email, password)
-//        }
+        binding.password.editText?.doOnTextChanged { text, _, _, _ ->
+            val password = text.toString()
+            if (password.isEmpty()) {
+                binding.password.error = "Password is required."
+            } else if (!isValidPassword(password)) {
+                binding.password.error = "Password must have at least 8 characters, 1 special character, 1 number, 1 uppercase, and 1 lowercase letter."
+            } else {
+                binding.password.error = null // Clear the error if password is valid
+            }
+        }
 
         binding.loginButton.setOnClickListener {
-            val email = binding.email.text.toString()
-            val password = binding.password.text.toString()
-            viewModel.loginUser(email, password)
+            val hasEmailError = binding.email.error != null
+            val hasPasswordError = binding.password.error != null
+
+            if (!hasEmailError && !hasPasswordError) {
+                val email = binding.email.editText?.text.toString().trim()
+                val password = binding.password.editText?.text.toString().trim()
+                viewModel.loginUser(email, password)
+            }
         }
 
         viewModel.loginResponse.observe(viewLifecycleOwner) { response ->
             // Handle the login response
             if (response.error == null && response.user != null) {
                 // Successful login
+                Log.d("+++ Successful login", response.toString())
                 findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
             } else {
                 // Error during login
+                Log.d("+++ Error during login", response.toString())
                 Toast.makeText(context, "Error, Please try again...!", Toast.LENGTH_SHORT).show()
-//                AlertDialog.Builder(context)
-//                    .setTitle("Title")
-//                    .setMessage("Your message here")
-//                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-//                    .show()
             }
         }
-
-//        viewModel.loginResponse.observe(viewLifecycleOwner) { response ->
-//            when (response) {
-//                is LoginState.Success -> {
-//                    binding.progressBar.visibility = View.GONE // Hide ProgressBar on Success
-//                    // Handle successful login
-//                }
-//                is LoginState.Error -> {
-//                    binding.progressBar.visibility = View.GONE // Hide ProgressBar on Error
-//                    // Handle error
-//                }
-//                LoginState.Loading -> {
-//                    binding.progressBar.visibility = View.VISIBLE // Show ProgressBar on Loading
-//                }
-//            }
-//        }
-
-/*
-        viewModel.loginResponse.observe(viewLifecycleOwner) { response ->
-            when (response) {
-                is LoginState.Success -> {
-                    binding.progressindicator.visibility = View.GONE // Hide ProgressBar
-                    //binding.signInButton.isEnabled = true // Enable Sign In Button
-                    // Handle successful login
-                }
-                is LoginState.Error -> {
-                    binding.progressindicator.visibility = View.GONE // Hide ProgressBar
-                    //binding.signInButton.isEnabled = true // Enable Sign In Button
-                    // Handle error
-                }
-                LoginState.Loading -> {
-                    binding.progressindicator.visibility = View.VISIBLE // Show ProgressBar
-                    //binding.signInButton.isEnabled = false // Disable Sign In Button
-                }
-            }
-        }
- */
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_login, container, false)
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }

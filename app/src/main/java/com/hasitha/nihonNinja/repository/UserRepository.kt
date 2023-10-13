@@ -29,12 +29,9 @@ class UserRepository @Inject constructor(
             val userEntity = convertToEntity(user)
             userDao.saveUser(userEntity)
 
-
             // Save user ID to SharedPreferences
             sharedPrefManager.saveUserId(user.id)
-            sharedPrefManager.saveUserName(user.username
-            )  // Assuming the user object has a 'name' attribute
-
+            sharedPrefManager.saveUserName(user.name)
         }
 
         return loginResponse;
@@ -44,8 +41,8 @@ class UserRepository @Inject constructor(
     private fun convertToEntity(userResponse: UserResponse): UserEntity {
         return UserEntity(
             id = userResponse.id, // Adjust this to the actual id field in UserResponse
-//            name = userResponse.username,
-            username = userResponse.username, // Adjust this to the actual username field in UserResponse
+            name = userResponse.name,
+//            username = userResponse.username, // Adjust this to the actual username field in UserResponse
             email = userResponse.email // Adjust this to the actual email field in UserResponse
             // Map other fields as necessary
         )
