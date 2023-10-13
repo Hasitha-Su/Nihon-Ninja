@@ -61,7 +61,6 @@ tools:context=".ui.userLogin.LoginFragment">
             android:maxLength="30"
             android:padding="8dp"
             app:helperText="Required*"
-            android:textColorHighlight="@color/cardview_dark_background"
             android:layout_marginTop="20dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -94,7 +93,6 @@ tools:context=".ui.userLogin.LoginFragment">
             android:maxLength="30"
             android:padding="8dp"
             app:helperText="Required*"
-            android:textColorHighlight="@color/cardview_dark_background"
             android:layout_marginTop="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -129,7 +127,6 @@ tools:context=".ui.userLogin.LoginFragment">
             android:maxLength="30"
             android:padding="8dp"
             app:helperText="Required*"
-            android:textColorHighlight="@color/cardview_dark_background"
             android:layout_marginTop="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -163,7 +160,6 @@ tools:context=".ui.userLogin.LoginFragment">
             android:maxLength="30"
             android:padding="8dp"
             app:helperText="Required*"
-            android:textColorHighlight="@color/cardview_dark_background"
             android:layout_marginTop="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
