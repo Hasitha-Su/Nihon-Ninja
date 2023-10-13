@@ -9,4 +9,7 @@
     <string name="not_yet_registered_signup_now">Not yet registered? SignUp Now</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
+    <string name="nihon_ninja">Nihon Ninja</string>
+    <string name="already_an_user">ALREADY AN USER</string>
+    <string name="get_started">GET STARTED</string>
 </resources>
