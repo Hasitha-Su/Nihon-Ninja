@@ -27,22 +27,11 @@ class TranslationQuizViewModel @Inject constructor(
     // LiveData for the Evaluation Result
     val isAnswerCorrect: MutableLiveData<Boolean> = MutableLiveData()
 
-    // LiveData for Processed Data
-//    val processedWords: MutableLiveData<List<List<String>>> = MutableLiveData()
-
-//    private fun extractWordsFromResponse(response: List<QuestionWithAnswers>): List<List<String>> {
-//        return response.map { questionWithAnswers ->
-//            questionWithAnswers.answers.map { it.word }
-//        }
-//    }
-
-
     //Function to Evaluate the Answer
     fun evaluateUserAnswer(selectedButtonIds: List<Int>, currentSentenceIndex: Int, listOfAnswerOrders: List<List<Int>>) {
         val result = selectedButtonIds == listOfAnswerOrders[currentSentenceIndex]
         isAnswerCorrect.value = result
     }
-
 
     fun fetchSentences(quizId: Int) {
         //TODO - Remove hardcoded ID

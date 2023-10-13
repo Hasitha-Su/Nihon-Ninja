@@ -1,6 +1,6 @@
 package com.hasitha.nihonNinja.model.api
 
 data class LoginRequest(
-    val username: String,
+    val email: String,
     val password: String
 )

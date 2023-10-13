@@ -105,39 +105,10 @@ class TranslationQuizFragment : Fragment() {
             translationQuizViewModel.evaluateUserAnswer(selectedButtonIds, currentSentenceIndex, listOfAnswerOrders)
         }
 
-        /*
-        nextButton.setOnClickListener {
 
             //TODO - Keep button disables until user enter an answer - at least 1
             //TODO - Add validation for NEXT button - no next with empty answer
             //TODO - Evaluate User answer with given answer
-
-//            Log.d("+++ selectedButtonIds", selectedButtonIds.toString())
-//            Log.d("+++ listOfAnswerOrders[currentSentenceIndex] ", listOfAnswerOrders[currentSentenceIndex].toString())
-
-            //Ex: listOfAnswerOrders[currentSentenceIndex] - [0, 1, 2, 3]
-            val isAnswerCorrect = selectedButtonIds == listOfAnswerOrders[currentSentenceIndex]
-            questionResults.add(QuestionResult(questionNumber = currentSentenceIndex + 1, isCorrect = isAnswerCorrect))
-
-
-            if(isAnswerCorrect){
-                correctAnswerCount++
-//                Log.d("+++ correctAnswerCount", correctAnswerCount.toString())
-                showSnackbar(it, isAnswerCorrect,"")
-            }else{
-                //Ex: myWords - [[私, は, 学生, です, 先生, 犬], [これ, は, 本, です, ペン, 猫]]
-                val answerList = myWords[currentSentenceIndex]
-                val result = listOfAnswerOrders[currentSentenceIndex].map { answerList[it] }.joinToString(" ")
-//                Log.d("+++ result",result)
-                showSnackbar(it, isAnswerCorrect,result)
-//                Log.d("+++ correct ans order", result)
-            }
-
-//            Log.d("+++ selectedButtonIds", selectedButtonIds.toString())
-            selectedButtonIds.clear()
-        }
-
-         */
     }
 
     private fun questionIterate(){
