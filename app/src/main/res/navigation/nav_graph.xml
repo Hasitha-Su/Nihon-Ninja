@@ -49,14 +49,14 @@
         <action
             android:id="@+id/action_dashboardFragment_to_sinhalaToJapTranslationQuizFragment3"
             app:destination="@id/translationQuizFragment" />
-        <argument
-            android:name="quizId"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/translationQuizFragment"
         android:name="com.hasitha.nihonNinja.ui.translationQuiz.TranslationQuizFragment"
         android:label="TranslationQuizFragment" >
+        <argument
+            android:name="quizId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_translationQuizFragment_to_quizResultFragment"
             app:destination="@id/quizResultFragment" >
