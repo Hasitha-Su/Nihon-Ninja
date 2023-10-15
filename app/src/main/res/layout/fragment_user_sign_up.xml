@@ -32,20 +32,11 @@ tools:context=".ui.userLogin.LoginFragment">
             android:id="@+id/loginText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:textAlignment="center"
             android:textSize="36sp"
             android:textStyle="bold" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:drawablePadding="8dp"-->
-<!--            android:hint="Name"-->
-<!--            android:padding="8dp"-->
-<!--            android:textColorHighlight="@color/cardview_dark_background" />-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name"
             android:layout_width="match_parent"
@@ -54,7 +45,7 @@ tools:context=".ui.userLogin.LoginFragment">
             android:maxWidth="488dp"
             android:drawablePadding="8dp"
             app:startIconDrawable="@drawable/baseline_person_24"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="text"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
@@ -69,15 +60,6 @@ tools:context=".ui.userLogin.LoginFragment">
                 android:layout_height="55dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <EditText-->
-<!--            android:id="@+id/email"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:drawablePadding="8dp"-->
-<!--            android:hint="Email"-->
-<!--            android:padding="8dp"-->
-<!--            android:textColorHighlight="@color/cardview_dark_background" />-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email"
             android:layout_width="match_parent"
@@ -100,17 +82,6 @@ tools:context=".ui.userLogin.LoginFragment">
                 android:layout_width="match_parent"
                 android:layout_height="55dp" />
         </com.google.android.material.textfield.TextInputLayout>
-
-<!--        <EditText-->
-<!--            android:id="@+id/password"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:drawablePadding="8dp"-->
-<!--            android:hint="Password"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:padding="8dp"-->
-<!--            android:textColorHighlight="@color/cardview_dark_background" />-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password"
@@ -135,16 +106,6 @@ tools:context=".ui.userLogin.LoginFragment">
                 android:layout_height="55dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <EditText-->
-<!--            android:id="@+id/confirmPassword"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:drawablePadding="8dp"-->
-<!--            android:hint="Confirm Password"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:padding="8dp"-->
-<!--            android:textColorHighlight="@color/cardview_dark_background" />-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/confPassword"
             android:layout_width="match_parent"
@@ -153,7 +114,7 @@ tools:context=".ui.userLogin.LoginFragment">
             android:maxWidth="488dp"
             android:drawablePadding="8dp"
             app:startIconDrawable="@drawable/baseline_password_24"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
@@ -173,7 +134,7 @@ tools:context=".ui.userLogin.LoginFragment">
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
-            android:text="SIGNUP"
+            android:text="@string/signup"
             android:textSize="18sp"
             app:cornerRadius="20dp" />
 
@@ -187,7 +148,7 @@ tools:context=".ui.userLogin.LoginFragment">
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:padding="8dp"
-        android:text="Already have an account? Sign In Now"
+        android:text="@string/already_have_an_account_sign_in_now"
         android:textAlignment="center"
         android:textSize="14sp" />
 
