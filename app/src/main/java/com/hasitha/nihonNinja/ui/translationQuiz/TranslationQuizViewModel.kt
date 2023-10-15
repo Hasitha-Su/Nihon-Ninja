@@ -29,8 +29,7 @@ class TranslationQuizViewModel @Inject constructor(
     }
 
     fun fetchSentences(quizId: Int) {
-        //TODO - Remove hardcoded ID
-        sentences2 = quizRepository.getQuizWithQuestionsAndAnswers(1)
+        sentences2 = quizRepository.getQuizWithQuestionsAndAnswers(quizId)
     }
 
     fun nextQuestion() {
