@@ -29,9 +29,10 @@ class QuizAdapter : ListAdapter<QuizEntity, QuizAdapter.QuizViewHolder>(QuizDiff
 
     class QuizViewHolder(private val binding: ItemQuizBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quiz: QuizEntity) {
+            val quizId = quiz.quizId
             binding.quizName.text = quiz.quizName
             binding.root.setOnClickListener {
-                val action = DashboardFragmentDirections.actionDashboardFragmentToSinhalaToJapTranslationQuizFragment3()
+                val action = DashboardFragmentDirections.actionDashboardFragmentToSinhalaToJapTranslationQuizFragment3(quizId)
                 it.findNavController().navigate(action)
             }
         }
