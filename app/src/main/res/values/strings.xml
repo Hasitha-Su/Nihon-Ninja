@@ -14,7 +14,7 @@
     <string name="get_started">GET STARTED</string>
     <string name="submit">Submit</string>
     <string name="this_sample_sentence_is_one_only_for_demonstration_purpose">This sample sentence is one only for demonstration purpose</string>
-    <string name="thanslate_this_sentence">Thanslate this sentence</string>
+    <string name="translate_this_sentence">Thanslate this sentence</string>
     <string name="name">Name</string>
     <string name="sign_up">Sign Up</string>
     <string name="confirm_password">Confirm Password</string>

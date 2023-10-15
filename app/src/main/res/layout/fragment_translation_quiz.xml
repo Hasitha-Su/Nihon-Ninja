@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="@string/thanslate_this_sentence" />
+            android:textSize="20sp"
+            android:text="@string/translate_this_sentence" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:src="@drawable/quizninja" />
+                android:src="@drawable/quizninja4" />
 
             <TextView
                 android:id="@+id/trnalationquizsentnce"
@@ -47,14 +48,15 @@
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/wordsFlexbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="16dp"
             app:alignItems="center"
+            android:background="@drawable/border_background"
             app:flexDirection="row"
             app:flexWrap="wrap"
             app:justifyContent="center" />
 
-        <!-- Section 3: FlexboxLayout for Correct/Wrong Indicators -->
+        <!-- Section 3: FlexboxLayout for Correct/Wrong Answers -->
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/flexboxLayout"
             android:layout_width="match_parent"
