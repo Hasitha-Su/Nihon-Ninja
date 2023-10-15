@@ -2,6 +2,7 @@ package com.hasitha.nihonNinja.ui.translationQuiz
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -25,19 +26,23 @@ import dagger.hilt.android.AndroidEntryPoint
 class TranslationQuizFragment : Fragment() {
 
     private val translationQuizViewModel: TranslationQuizViewModel by viewModels()
+
     private var buttonIdCounter = 0
     private var currentLineWidth = 0
     private var currentSentenceIndex = 0
+    private var correctAnswerCount: Int = 0
+    private var totalQuestions: Int = 0
+
+    private lateinit var textView: TextView
     private lateinit var wordsFlexbox: FlexboxLayout
     private lateinit var buttonsFlexboxLayout: FlexboxLayout
     private lateinit var myWords: List<List<String>>
-    private val buttonState: MutableMap<Int, Boolean> = mutableMapOf()
-    private var selectedButtonIds: MutableList<Int> = mutableListOf()
+
     private val listOfSentences = mutableListOf<String>()
     private val listOfAnswerOrders = mutableListOf<List<Int>>()
-    private var correctAnswerCount: Int = 0
-    private var totalQuestions: Int = 0
-    private lateinit var textView: TextView
+
+    private val buttonState: MutableMap<Int, Boolean> = mutableMapOf()
+    private var selectedButtonIds: MutableList<Int> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,8 +59,9 @@ class TranslationQuizFragment : Fragment() {
 
         textView = view.findViewById(R.id.trnalationquizsentnce)
 
+
         val quizId = arguments?.getInt("quizId") ?: return
-//        Log.d("+++ quizId", quizId.toString())
+        Log.d("+++ quizId", quizId.toString())
 
         translationQuizViewModel.fetchSentences(quizId)
 
