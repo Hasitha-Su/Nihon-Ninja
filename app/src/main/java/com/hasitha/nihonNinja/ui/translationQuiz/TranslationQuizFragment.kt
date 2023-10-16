@@ -18,7 +18,6 @@ import com.google.android.flexbox.*
 import com.google.android.material.snackbar.Snackbar
 import com.hasitha.nihonNinja.R
 import com.hasitha.nihonNinja.model.api.QuizResult
-import com.hasitha.nihonNinja.model.entities.QuestionResult
 import com.hasitha.nihonNinja.model.entities.QuestionWithAnswers
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,6 +42,8 @@ class TranslationQuizFragment : Fragment() {
 
     private val buttonState: MutableMap<Int, Boolean> = mutableMapOf()
     private var selectedButtonIds: MutableList<Int> = mutableListOf()
+    private lateinit var nextButton: Button
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +52,7 @@ class TranslationQuizFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_translation_quiz, container, false)
         buttonsFlexboxLayout = view.findViewById(R.id.flexboxLayout)
         wordsFlexbox = view.findViewById(R.id.wordsFlexbox)
+        nextButton = view.findViewById(R.id.nextButton)
         return view
     }
 
@@ -104,8 +106,6 @@ class TranslationQuizFragment : Fragment() {
             selectedButtonIds.clear()
         }
 
-        val nextButton: Button = view.findViewById(R.id.nextButton)
-
         nextButton.setOnClickListener {
             translationQuizViewModel.evaluateUserAnswer(selectedButtonIds, currentSentenceIndex, listOfAnswerOrders)
         }
@@ -138,7 +138,8 @@ class TranslationQuizFragment : Fragment() {
         }
     }
 
-    fun showSnackbar(view: View, isCorrect: Boolean, correctAnswer: String?) {
+    private fun showSnackbar(view: View, isCorrect: Boolean, correctAnswer: String?) {
+
         val snackbarText = if (isCorrect) {
             "Answer is correct."
         } else {
@@ -148,8 +149,19 @@ class TranslationQuizFragment : Fragment() {
             .setAction("Continue") {
                 questionIterate()
             }
+
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onShown(sb: Snackbar?) {
+                nextButton.visibility = View.GONE
+            }
+            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                nextButton.visibility = View.VISIBLE
+            }
+        })
         snackbar.show()
     }
+
+
 
     private fun extractWordsFromResponse(response: List<QuestionWithAnswers>): List<List<String>> {
         return response.map { questionWithAnswers ->
