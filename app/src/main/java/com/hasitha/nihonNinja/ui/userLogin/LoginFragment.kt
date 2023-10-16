@@ -45,16 +45,6 @@ class LoginFragment : Fragment() {
             }
         }
 
-//        binding.loginButton.setOnClickListener {
-//            val hasEmailError = binding.email.error != null
-//            val hasPasswordError = binding.password.error != null
-//
-//            if (!hasEmailError && !hasPasswordError) {
-//                val email = binding.email.editText?.text.toString().trim()
-//                val password = binding.password.editText?.text.toString().trim()
-//                viewModel.loginUser(email, password)
-//            }
-//        }
         binding.loginButton.setOnClickListener {
             val email = binding.email.editText?.text.toString().trim()
             val password = binding.password.editText?.text.toString().trim()
@@ -72,7 +62,9 @@ class LoginFragment : Fragment() {
 
         viewModel.loginResponse.observe(viewLifecycleOwner) { response ->
 
+            //remove the loading overlay
             binding.loadingOverlay.visibility = View.GONE
+
             // Handle the login response
             if (response.error == null && response.user != null) {
                 // Successful login
