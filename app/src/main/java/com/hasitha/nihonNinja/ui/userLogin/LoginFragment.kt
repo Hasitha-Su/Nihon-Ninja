@@ -46,17 +46,25 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
-            val hasEmailError = binding.email.error != null
-            val hasPasswordError = binding.password.error != null
+            val email = binding.email.editText?.text.toString().trim()
+            val password = binding.password.editText?.text.toString().trim()
 
-            if (!hasEmailError && !hasPasswordError) {
-                val email = binding.email.editText?.text.toString().trim()
-                val password = binding.password.editText?.text.toString().trim()
-                viewModel.loginUser(email, password)
+            when {
+                email.isEmpty() -> binding.email.error = "Email is required."
+                !isValidEmail(email) -> binding.email.error = "Invalid email format."
+                password.isEmpty() -> binding.password.error = "Password is required."
+                else -> {
+                    binding.loadingOverlay.visibility = View.VISIBLE
+                    viewModel.loginUser(email, password)
+                }
             }
         }
 
         viewModel.loginResponse.observe(viewLifecycleOwner) { response ->
+
+            //remove the loading overlay
+            binding.loadingOverlay.visibility = View.GONE
+
             // Handle the login response
             if (response.error == null && response.user != null) {
                 // Successful login
