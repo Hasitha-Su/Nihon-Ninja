@@ -15,13 +15,17 @@ class LeaderBoardViewModel @Inject constructor(
     private val repository: LeaderBoardRepository
 ) : ViewModel() {
 
+    val isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
     val leaderBoardItems: MutableLiveData<List<LeaderBoardUserResponse>> = MutableLiveData()
 
     init {
         viewModelScope.launch {
+            isLoading.value = true
             try {
                 leaderBoardItems.value = repository.getLeaderBoard()
+                isLoading.value = false
             } catch (e: Exception) {
+                isLoading.value = false
                 // Handle exceptions, Ex: network failures here
             }
         }

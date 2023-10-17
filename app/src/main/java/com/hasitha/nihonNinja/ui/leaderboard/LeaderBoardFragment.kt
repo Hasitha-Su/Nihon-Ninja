@@ -35,6 +35,13 @@ class LeaderBoardFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.loadingOverlay.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
