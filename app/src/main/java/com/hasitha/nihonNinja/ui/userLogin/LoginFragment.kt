@@ -1,6 +1,5 @@
 package com.hasitha.nihonNinja.ui.userLogin
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,11 +80,9 @@ class LoginFragment : Fragment() {
             // Handle the login response
             if (response.error == null && response.user != null) {
                 // Successful login
-//                Log.d("+++ Successful login", response.toString())
                 findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
             } else {
                 // Error during login
-//                Log.d("+++ Error during login", response.toString())
                 Toast.makeText(context, "Error, Please try again...!", Toast.LENGTH_SHORT).show()
             }
         }

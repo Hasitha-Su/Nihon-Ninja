@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
-                android:text="@string/signup"
+                android:text="@string/sign_up"
                 android:textSize="18sp"
                 app:cornerRadius="20dp" />
 
@@ -147,7 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:padding="8dp"
-        android:text="SignIp"
+        android:text="@string/sign_in"
         android:textAlignment="center"
         android:textSize="14sp"
         android:clickable="true"

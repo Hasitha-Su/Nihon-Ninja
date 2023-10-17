@@ -30,9 +30,6 @@ class DashboardFragment : Fragment() {
         quizViewModel = ViewModelProvider(this)[DashboardViewModel::class.java]
         binding.viewModel = quizViewModel
 
-        quizViewModel.greeting.observe(viewLifecycleOwner) { greetingMessage ->
-            Log.d("DashboardFragment", "Greeting: $greetingMessage")
-        }
         return binding.root
     }
 
@@ -44,7 +41,6 @@ class DashboardFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         quizViewModel.allQuizzes.observe(viewLifecycleOwner) { quizzes ->
-//            Log.d("+++ allQuizzes 2", quizzes.toString())
             quizzes?.let { quizAdapter.submitList(it) }
         }
     }

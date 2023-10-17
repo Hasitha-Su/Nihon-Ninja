@@ -22,7 +22,6 @@ class UserProfileFragment : Fragment() {
     @Inject
     lateinit var sharedPrefManager: SharedPrefManager
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +36,7 @@ class UserProfileFragment : Fragment() {
 
         val btnSignOut: Button = view.findViewById(R.id.sign_out_button)
         btnSignOut.setOnClickListener {
-            sharedPrefManager.clearPreferences() // clear the shared preferences data
+            sharedPrefManager.clearPreferences()
             findNavController().navigate(R.id.action_userProfileFragment_to_homeFragment)
         }
     }

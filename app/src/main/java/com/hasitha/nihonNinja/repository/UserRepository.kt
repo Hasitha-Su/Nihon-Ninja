@@ -16,7 +16,6 @@ class UserRepository @Inject constructor(
 ) {
     suspend fun loginUser(email: String, password: String): LoginResponse {
         val loginRequest = LoginRequest(email, password)
-//        Log.d("+++ loginRequest", loginRequest.toString())
         val loginResponse = userApiService.loginUser(loginRequest)
 
         loginResponse.token?.let { sharedPrefManager.saveToken(it) }
@@ -32,7 +31,6 @@ class UserRepository @Inject constructor(
 
     suspend fun signUp(request: SignUpRequest): SignUpResponse {
         val signUpResponse = userApiService.userSignUp(request)
-
         signUpResponse.data.let { user ->
             userDao.saveUser(user)
             // Save user ID to SharedPreferences

@@ -70,4 +70,3 @@ class SharedPrefManager @Inject constructor(context: Context) {
         }
     }
 }
-

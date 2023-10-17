@@ -22,8 +22,6 @@ class QuizRepository(
         try {
             withContext(Dispatchers.IO) {
                 val quizResponse = quizApiService.getQuizById()
-//                Log.d("+++ quizResponse", quizResponse.toString())
-
                 val quiz = QuizEntity(quizResponse.quizId, quizResponse.quizName, quizResponse.totalQuestions)
                 quizDao.insertQuiz(quiz)
 
@@ -57,7 +55,6 @@ class QuizRepository(
     fun getQuizWithQuestionsAndAnswers(quizId: Int): LiveData<QuizWithQuestionsAndAnswers> = liveData {
         val questionsWithAnswers = quizDao.getQuestionsWithAnswersForQuiz(quizId)
         val totalQuestions = quizDao.getTotalQuestionsForQuiz(quizId)
-//        Log.d("+++ totalQuestions", totalQuestions.toString())
         emit(QuizWithQuestionsAndAnswers(totalQuestions, questionsWithAnswers))
     }
 
@@ -74,14 +71,14 @@ class QuizRepository(
             val response = quizApiService.saveQuizResult(quizResult)
             if (response.isSuccessful) {
                 // Handle success
-                Log.d("+++ QuizResult", "Result saved successfully!")
+//                Log.d("+++ QuizResult", "Result saved successfully!")
             } else {
                 // Handle API error response
-                Log.e("+++ QuizResult", "Failed to save result: ${response.errorBody()?.string()}")
+//                Log.e("+++ QuizResult", "Failed to save result: ${response.errorBody()?.string()}")
             }
         } catch (e: Exception) {
             // Handle other exceptions like network error
-            Log.e("+++ QuizResult", "Error saving result: ${e.localizedMessage}")
+//            Log.e("+++ QuizResult", "Error saving result: ${e.localizedMessage}")
         }
     }
 }

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">日本の忍者</string>
-    <string name="hello_blank_fragment">空のフラグメントへようこそ</string>
-    <string name="leaderboard">リーダーボード</string>
-    <string name="home">ホーム</string>
-    <string name="profile">プロフィール</string>
-    <string name="email">メール</string>
-    <string name="login">ログイン</string>
-    <string name="not_yet_registered_signup_now">まだ登録していませんか？ 今すぐサインアップ</string>
-    <string name="password">パスワード</string>
-    <string name="sign_in">サインイン</string>
+    <string name="app_name">日本忍者</string> <!-- Nihon Ninja -->
+    <string name="hello_blank_fragment">空のフラグメントにこんにちは</string> <!-- Hello blank fragment -->
+    <string name="leaderboard">リーダーボード</string> <!-- Leaderboard -->
+    <string name="home">ホーム</string> <!-- Home -->
+    <string name="profile">プロフィール</string> <!-- Profile -->
+    <string name="email">メール</string> <!-- Email -->
+    <string name="login">ログイン</string> <!-- Login -->
+    <string name="not_yet_registered_signup_now">まだ登録していないですか？今すぐサインアップ</string> <!-- Not yet registered? SignUp Now -->
+    <string name="password">パスワード</string> <!-- Password -->
+    <string name="sign_in">サインイン</string> <!-- Sign In -->
+    <string name="nihon_ninja">日本忍者</string> <!-- Nihon Ninja -->
+    <string name="already_an_user">すでにユーザーです</string> <!-- ALREADY AN USER -->
+    <string name="get_started">始める</string> <!-- GET STARTED -->
+    <string name="submit">提出</string> <!-- Submit -->
+    <string name="translate_this_sentence">この文を翻訳してください</string> <!-- Translate this sentence -->
+    <string name="name">名前</string> <!-- Name -->
+    <string name="sign_up">サインアップ</string> <!-- Sign Up -->
+    <string name="confirm_password">パスワードの確認</string> <!-- Confirm Password -->
+    <string name="signup">サインアップ</string> <!-- SIGNUP -->
+    <string name="already_have_an_account_sign_in_now">すでにアカウントを持っていますか？今すぐサインイン</string> <!-- Already have an account? Sign In Now -->
+
 </resources>

@@ -2,7 +2,6 @@ package com.hasitha.nihonNinja.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.lifecycle.lifecycleScope
@@ -26,22 +25,17 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
         val navController = navHostFragment.navController
-
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-//        bottomNavigationView.setBackgroundColor(Color.parseColor("#FF5733"))
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-//            Log.d("NAVIGATION", "Navigated to: ${destination.displayName}")
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.loginFragment,
                 R.id.userSignUpFragment,
                 R.id.translationQuizFragment -> {
-//                    Log.d("NAVIGATION", "Hiding bottom navigation")
                     bottomNavigationView.visibility = View.GONE
                 }
                 else -> {
-//                    Log.d("NAVIGATION", "Showing bottom navigation")
                     bottomNavigationView.visibility = View.VISIBLE
                 }
             }
