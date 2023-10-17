@@ -2,20 +2,39 @@ package com.hasitha.nihonNinja.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SharedPrefManager @Inject constructor(context: Context) {
 
     private val sharedPref: SharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
 
-    companion object {
-        @Volatile
-        private var instance: SharedPrefManager? = null
+    private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
 
-        fun getInstance(context: Context) =
-            instance ?: synchronized(this) {
-                instance ?: SharedPrefManager(context.applicationContext).also { instance = it }
-            }
+    private val encryptedPrefs = EncryptedSharedPreferences.create(
+        "secure_shared_prefs",
+        masterKeyAlias,
+        context,
+        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+    )
+
+    fun saveToken(token: String) {
+        encryptedPrefs.edit().putString("token", token).apply()
+    }
+
+    fun getToken(): String? {
+        return encryptedPrefs.getString("token", null)
+    }
+
+    fun clearToken() {
+        with(encryptedPrefs.edit()) {
+            remove("token")
+            apply()
+        }
     }
 
     fun saveUserId(userId: Long) {
@@ -26,7 +45,7 @@ class SharedPrefManager @Inject constructor(context: Context) {
     }
 
     fun getUserId(): Long {
-        return sharedPref.getLong("user_id", -1) // return -1 if no id is found.
+        return sharedPref.getLong("user_id", -1)
     }
 
     fun saveUserName(userName: String) {
@@ -37,6 +56,18 @@ class SharedPrefManager @Inject constructor(context: Context) {
     }
 
     fun getUserName(): String {
-        return sharedPref.getString("user_name", "") ?: "" // return empty string if no name is found.
+        return sharedPref.getString("user_name", "") ?: ""
+    }
+
+    fun clearPreferences() {
+        with(sharedPref.edit()) {
+            clear()
+            apply()
+        }
+        with(encryptedPrefs.edit()) {
+            clear()
+            apply()
+        }
     }
 }
+

@@ -9,11 +9,19 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.hasitha.nihonNinja.R
 import com.hasitha.nihonNinja.databinding.FragmentUserProfileBinding
+import com.hasitha.nihonNinja.util.SharedPrefManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class UserProfileFragment : Fragment() {
 
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var sharedPrefManager: SharedPrefManager
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +36,9 @@ class UserProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnSignOut: Button = view.findViewById(R.id.sign_out_button)
-
         btnSignOut.setOnClickListener {
-            findNavController().navigate(R.id.action_userProfileFragment_to_loginFragment)
+            sharedPrefManager.clearPreferences() // clear the shared preferences data
+            findNavController().navigate(R.id.action_userProfileFragment_to_homeFragment)
         }
     }
 

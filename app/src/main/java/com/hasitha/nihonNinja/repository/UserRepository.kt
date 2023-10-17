@@ -18,9 +18,11 @@ class UserRepository @Inject constructor(
         val loginRequest = LoginRequest(email, password)
 //        Log.d("+++ loginRequest", loginRequest.toString())
         val loginResponse = userApiService.loginUser(loginRequest)
+
+        loginResponse.token?.let { sharedPrefManager.saveToken(it) }
+
         loginResponse.user?.let { user ->
             userDao.saveUser(user)
-
             // Save user ID to SharedPreferences
             sharedPrefManager.saveUserId(user.id)
             sharedPrefManager.saveUserName(user.name)
