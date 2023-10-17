@@ -61,7 +61,6 @@ class TranslationQuizFragment : Fragment() {
 
         textView = view.findViewById(R.id.trnalationquizsentnce)
 
-
         val quizId = arguments?.getInt("quizId") ?: return
         Log.d("+++ quizId", quizId.toString())
 
