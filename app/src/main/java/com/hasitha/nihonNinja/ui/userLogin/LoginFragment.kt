@@ -69,6 +69,10 @@ class LoginFragment : Fragment() {
             }
         }
 
+        binding.signupText.setOnClickListener {
+            findNavController().navigate(R.id.userSignUpFragment)
+        }
+
         viewModel.loginResponse.observe(viewLifecycleOwner) { response ->
 
             //remove the loading overlay
