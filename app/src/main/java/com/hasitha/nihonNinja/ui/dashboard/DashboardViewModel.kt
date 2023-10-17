@@ -23,7 +23,6 @@ class DashboardViewModel @Inject constructor(
 
     val greeting: LiveData<String> = MutableLiveData<String>().apply {
         value = "Hi $userName"
-        Log.d("+++ DashboardViewModel", "Greeting: $value")
     }
 
     val sayHi: LiveData<String> = MutableLiveData<String>().apply {

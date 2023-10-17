@@ -113,6 +113,10 @@ class UserSignUpFragment : Fragment() {
                 Toast.makeText(context, "Please fill all fields correctly", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.signinText.setOnClickListener {
+            findNavController().navigate(R.id.loginFragment)
+        }
     }
 
     override fun onCreateView(

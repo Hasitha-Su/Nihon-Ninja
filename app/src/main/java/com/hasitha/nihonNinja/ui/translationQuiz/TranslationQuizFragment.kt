@@ -67,26 +67,18 @@ class TranslationQuizFragment : Fragment() {
         translationQuizViewModel.fetchSentences(quizId)
 
         translationQuizViewModel.sentences2.observe(viewLifecycleOwner) { quizWithQuestionsAndAnswers ->
-//            Log.d("+++ sentences observing", quizWithQuestionsAndAnswers.toString())
             totalQuestions = quizWithQuestionsAndAnswers.totalQuestions
 
             quizWithQuestionsAndAnswers.questionsWithAnswers.observe(viewLifecycleOwner) { list ->
-//                Log.d("+++ sentences observing list", list.toString())
 
                 list.forEach { questionWithAnswers ->
                     listOfSentences.add(questionWithAnswers.question.sentence) //Extract English/Sinhala Sentence
                     listOfAnswerOrders.add(questionWithAnswers.question.answerOrder) //Extract given answers
                 }
-
                 textView.text = listOfSentences[currentSentenceIndex]
                 myWords = extractWordsFromResponse(list)
-//                Log.d("+++ myWords", myWords.toString())
                 populateFlexbox(myWords[currentSentenceIndex])
-
             }
-//            Log.d("+++ listOfSentences", listOfSentences.toString())
-//            Log.d("+++ listOfAnswerOrders", listOfAnswerOrders.toString())
-//            Log.d("+++ myWords", myWords.toString())
         }
 
         translationQuizViewModel.currentSentenceIndex.observe(viewLifecycleOwner) { newIndex ->
@@ -115,23 +107,21 @@ class TranslationQuizFragment : Fragment() {
         wordsFlexbox.removeAllViews()
 
         translationQuizViewModel.nextQuestion()
-//        Log.d("+++ myWords", myWords.toString())
 
         if (currentSentenceIndex < listOfSentences.size) {
             buttonsFlexboxLayout.removeAllViews() // Clear the existing buttons
             textView.text = listOfSentences[currentSentenceIndex]
-            populateFlexbox(myWords[currentSentenceIndex]) // Populate with new sentence
-//            Log.d("+++ listOfSentences index", listOfSentences[currentSentenceIndex])
-//            Log.d("+++ listOfAnswerOrders index", listOfAnswerOrders[currentSentenceIndex].toString())
 
+            populateFlexbox(myWords[currentSentenceIndex]) // Populate with new sentence
         } else {
             currentSentenceIndex = 0
             buttonsFlexboxLayout.removeAllViews()
+
             val userId = translationQuizViewModel.getUserId()
             val quizResult = QuizResult(userId, 1, correctAnswerCount)
+
             translationQuizViewModel.saveQuizResult(quizResult)
-//            Log.d("+++ End of Quiz","+++ End of Quiz")
-//            Log.d("+++ questionResults", questionResults.toString())
+
             val action = TranslationQuizFragmentDirections.actionTranslationQuizFragmentToQuizResultFragment(correctAnswerCount,totalQuestions)
             findNavController().navigate(action)
         }
@@ -169,16 +159,16 @@ class TranslationQuizFragment : Fragment() {
     }
 
     private fun populateFlexbox(words: List<String>) {
-//        Log.d("+++ populateFlexbox", "Function called with words: $words")
+
         buttonState.clear()
-        buttonIdCounter = 0
+
         // Create a list to hold the button objects.
         val buttonList = mutableListOf<Button>()
 
-        for (word in words) {
+        for ((buttonIdCounter, word) in words.withIndex()) {
             val button = Button(context)
             button.text = word
-            button.id = buttonIdCounter++
+            button.id = buttonIdCounter
             buttonState[button.id] = false
 
             button.layoutParams = FlexboxLayout.LayoutParams(
@@ -194,14 +184,12 @@ class TranslationQuizFragment : Fragment() {
                     buttonState[button.id] = true
                     button.visibility = View.GONE
                 }
-//                    Log.d("+++ ButtonOnClick", "Button with text ${button.text} was clicked!")
             }
             buttonList.add(button)
         }
 
         // Shuffle the button objects.
         val shuffledButtons = buttonList.shuffled()
-//        Log.d("+++ populateFlexbox", "Shuffled button IDs: ${shuffledButtons.map { it.id }}")
 
         // Now add the shuffled buttons to the FlexboxLayout.
         for (shuffledButton in shuffledButtons) {
@@ -242,7 +230,6 @@ class TranslationQuizFragment : Fragment() {
         textView.setOnClickListener {
             val wordText = it as TextView
             wordsFlexbox.removeView(it)
-            //buttonState[wordText.text.toString()] = false
 
             val correspondingButton = buttonsFlexboxLayout.children.iterator().asSequence()
                 .filterIsInstance<Button>()

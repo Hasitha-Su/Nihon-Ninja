@@ -106,6 +106,10 @@ dependencies {
 
     // lifecycle & ViewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+    //security-crypto dependency
+    implementation 'androidx.security:security-crypto:1.1.0-alpha01'
+
 }
 
 // Allow references to generated code
