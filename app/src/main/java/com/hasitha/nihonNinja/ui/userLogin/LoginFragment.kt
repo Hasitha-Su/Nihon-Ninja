@@ -48,15 +48,24 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val email = binding.email.editText?.text.toString().trim()
             val password = binding.password.editText?.text.toString().trim()
+            var valid = true
 
-            when {
-                email.isEmpty() -> binding.email.error = "Email is required."
-                !isValidEmail(email) -> binding.email.error = "Invalid email format."
-                password.isEmpty() -> binding.password.error = "Password is required."
-                else -> {
-                    binding.loadingOverlay.visibility = View.VISIBLE
-                    viewModel.loginUser(email, password)
-                }
+            if (email.isEmpty()) {
+                binding.email.error = "Email is required."
+                valid = false
+            } else if (!isValidEmail(email)) {
+                binding.email.error = "Invalid email format."
+                valid = false
+            }
+
+            if (password.isEmpty()) {
+                binding.password.error = "Password is required."
+                valid = false
+            }
+
+            if (valid) {
+                binding.loadingOverlay.visibility = View.VISIBLE
+                viewModel.loginUser(email, password)
             }
         }
 
