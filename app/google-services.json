@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1044707833061",
+    "project_id": "nihon-ninja",
+    "storage_bucket": "nihon-ninja.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044707833061:android:6703ee82ff0e2ab50d100c",
+        "android_client_info": {
+          "package_name": "com.hasitha.nihonNinja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044707833061-9a8aonba8c0ngdj99jda9lr9v974h18f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaWPaAteiJab3jS6uAkpHeS_wpcn5WQT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044707833061-9a8aonba8c0ngdj99jda9lr9v974h18f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
