@@ -73,12 +73,15 @@ class UserSignUpFragment : Fragment() {
             return true
         }
 
-        // Overall validation:
         fun isValid(): Boolean {
-            return validateName() && validateEmail() && validatePassword() && validateConfPassword()
+            val isNameValid = validateName()
+            val isEmailValid = validateEmail()
+            val isPasswordValid = validatePassword()
+            val isConfPasswordValid = validateConfPassword()
+
+            return isNameValid && isEmailValid && isPasswordValid && isConfPasswordValid
         }
 
-        // Text change listeners that call the validation functions:
         binding.name.editText?.doOnTextChanged { _, _, _, _ -> validateName() }
         binding.email.editText?.doOnTextChanged { _, _, _, _ -> validateEmail() }
         binding.password.editText?.doOnTextChanged { _, _, _, _ -> validatePassword() }
