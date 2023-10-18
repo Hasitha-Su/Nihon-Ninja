@@ -94,10 +94,12 @@ class UserSignUpFragment : Fragment() {
                 val email = binding.email.editText?.text.toString()
                 val password = binding.password.editText?.text.toString()
 
+                binding.loadingOverlay.visibility = View.VISIBLE
                 val signUpRequest = SignUpRequest(name, email, password)
                 viewModel.signUp(signUpRequest)
 
                 viewModel.signUpResponse.observe(viewLifecycleOwner) { response ->
+                    binding.loadingOverlay.visibility = View.GONE
                     if (response != null) {
                         Toast.makeText(context, "Signup Successful!", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_userSignUpFragment_to_dashboardFragment)
