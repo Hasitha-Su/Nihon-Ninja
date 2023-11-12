@@ -1,0 +1,85 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hasitha.nihonNinja.ui.translationQuiz.TranslationQuizViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Section 1: Frame Layout for Image and Text -->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:textSize="20sp"
+            android:text="@string/translate_this_sentence" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/quizninja4" />
+
+            <TextView
+                android:id="@+id/trnalationquizsentnce"
+                android:layout_width="294dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/this_sample_sentence_is_one_only_for_demonstration_purpose"
+                android:textSize="18sp" />
+        </FrameLayout>
+
+        <!-- Section 2: FlexboxLayout for Words -->
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/wordsFlexbox"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            app:alignItems="center"
+            android:background="@drawable/border_background"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="center" />
+
+        <!-- Section 3: FlexboxLayout for Correct/Wrong Answers -->
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexboxLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="center" />
+
+        <!-- Section 4: Button Layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="189dp"
+                android:layout_height="wrap_content"
+                android:text="@string/submit" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

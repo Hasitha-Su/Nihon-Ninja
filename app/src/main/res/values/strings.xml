@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Nihon Ninja</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="not_yet_registered_signup_now">Not yet registered? SignUp Now</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="nihon_ninja">Nihon Ninja</string>
+    <string name="already_an_user">ALREADY AN USER</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="submit">Submit</string>
+    <string name="this_sample_sentence_is_one_only_for_demonstration_purpose">This sample sentence is one only for demonstration purpose</string>
+    <string name="translate_this_sentence">Thanslate this sentence</string>
+    <string name="name">Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="signup">SIGNUP</string>
+    <string name="already_have_an_account_sign_in_now">Already have an account? Sign In Now</string>
 </resources>
